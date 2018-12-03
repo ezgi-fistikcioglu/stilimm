@@ -7,11 +7,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Kategoriler</div>
                     <div class="list-group categories">
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> KADIN</a>
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> ERKEK</a>
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> GENÇ</a>
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> ÇOCUK</a>
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> AKSESUAR</a>
+                        @foreach($kategoriler as $kategori)
+                            <a href="{{ route('kategori',$kategori->slug) }}" class="list-group-item">
+                                <i class="fa fa-arrow-circle-o-right"></i>
+                                {{$kategori->kategori_adi }}
+                            </a>
+                        @endforeach
                     </div>
                 </div>
 
@@ -48,13 +49,15 @@
                                         <div align="left"><img src="/img/bb.jpg" width="50" height="50">Ezgi</div>
                                         <br>
                                         <div align="left">Ezgi</div>
-                                        <td >
-                                            <div class="resim"><img src="/img/stl.jpg"  width="500" height="250">
+                                        <td>
+                                            <div class="resim"><img src="/img/stl.jpg" width="500" height="250">
                                                 <br>
                                                 <div class="begen">
-                                                    <a href="#"><i class="fa fa-thumbs-up" style="font-size:24px"></i> Beğen<span
+                                                    <a href="#"><i class="fa fa-thumbs-up" style="font-size:24px"></i>
+                                                        Beğen<span
                                                             class="badge badge-theme">1000</span></a>
-                                                    <a href="#"><i class="fa fa-comment" style="font-size:24px"></i>Yorum Yap</a>
+                                                    <a href="#"><i class="fa fa-comment" style="font-size:24px"></i>Yorum
+                                                        Yap</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -66,16 +69,18 @@
                             <div class="panel-body">
                                 <table>
                                     <tr>
-                                        <div align="left"><img src="/img/111.jpg" width="50" height="50">Ezgi</div>
+                                        <div align="left"><img src="/img/111.jpg" width="50" height="50">Erva</div>
                                         <br>
-                                        <div align="left">Ezgi</div>
+                                        <div align="left">Erva</div>
                                         <td>
                                             <div class="resim"><img src="/img/kll.jpg" width="500" height="250">
                                                 <br>
                                                 <div class="begen">
-                                                    <a href="#"><i class="fa fa-thumbs-up" style="font-size:24px"></i> Beğen<span
-                                                            class="badge badge-theme">1000</span></a>
-                                                    <a href="#"><i class="fa fa-comment" style="font-size:24px"></i>Yorum Yap</a>
+                                                    <a href="#"><i class="fa fa-thumbs-up" style="font-size:24px"></i>
+                                                        Beğen<span
+                                                            class="badge badge-theme">600</span></a>
+                                                    <a href="#"><i class="fa fa-comment" style="font-size:24px"></i>Yorum
+                                                        Yap</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -91,9 +96,9 @@
                             <div class="panel-body">
                                 <table>
                                     <tr>
-                                        <div align="left"><img src="/img/6.jpg" width="50" height="50">Ezgi</div>
+                                        <div align="left"><img src="/img/6.jpg" width="50" height="50">Gamze</div>
                                         <br>
-                                        <div align="left">Ezgi</div>
+                                        <div align="left">Gamze</div>
                                         <td>
                                             <div class="kazanan">
                                                 <a href="#">

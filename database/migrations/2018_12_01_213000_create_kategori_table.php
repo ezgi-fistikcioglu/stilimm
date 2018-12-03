@@ -15,9 +15,12 @@ class CreateKategoriTable extends Migration
     {
         Schema::create('kategori', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kategori_adi',30);
-            $table->string('slug',40);
-            $table->timestamps();
+            $table->integer('ust_id')->nullable();
+            $table->string('kategori_adi', 30);
+            $table->string('slug', 40);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->softDeletes();
         });
     }
 

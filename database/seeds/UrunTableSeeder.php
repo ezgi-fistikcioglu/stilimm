@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Urun;
 
 class UrunTableSeeder extends Seeder
 {
@@ -9,11 +10,18 @@ class UrunTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker\Generator $faker)
     {
-        DB::table("urun")->insert([
-            'urun_adi'=> Str_random(10),
-            'fiyati'=>rand(10,99)/10
-        ]);
+       Urun::truncate();
+       for ($i=0; $i<30; $i++)
+       {
+           $urun_adi = $faker->sentence(2);
+           Urun::create([
+               'urun_adi'=> $urun_adi,
+               'slug'=>str_slug($urun_adi),
+               'aciklama'=>$faker->sentence(20),
+               'fiyati'=>$faker->randomFloat(3,1,20) //1 ve 20 arasında 3 basamaklı sayılar oluşturma
+           ]);
+       }
     }
 }
