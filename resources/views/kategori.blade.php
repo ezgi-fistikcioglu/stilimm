@@ -22,23 +22,6 @@
                             </a>
                                @endforeach
                         </div>
-                        <h3>Fiyat Aralığı</h3>
-                        <form>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> 100-200
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> 200-300
-                                    </label>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -49,28 +32,12 @@
                     <a href="#" class="btn btn-default">Yeni Ürünler</a>
                     <hr>
                     <div class="row">
+                            <div class="col-md-12">Üzgünüz, bu kategorideki ürünler tükenmiştir.</div>
                         <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/250/250/food/1"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
-                        </div>
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/250/250/food/2"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
-                        </div>
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/250/250/food/3"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
-                        </div>
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/250/250/food/4"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
+                            <a href="#"><img src="http://via.placeholder.com/400x400
+?text=UrunResmi"></a>
+                            <p><a href="#">urun adi</a></p>
+                            <p class="price">78₺</p>
                             <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
                         </div>
                     </div>

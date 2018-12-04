@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Kategori extends Model
 {
-   // use SoftDeletes;
+    use SoftDeletes;
     protected $table= "kategori";
     //protected $fillable= ['kategori_adi','slug'];
     //protected  $guarded= ['slug']; //vt eklemek istemediğimiz alanlar için kullanılır
     //eğer veritabanına her kolonu eklemek istersek ;
     protected  $guarded=[];
-
 
 
 }
