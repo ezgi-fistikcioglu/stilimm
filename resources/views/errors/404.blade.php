@@ -11,4 +11,5 @@
             </div>
         </div>
     </div>
+    //handler.php içerisinde düzenlemeler yapılmıştır.
 @endsection

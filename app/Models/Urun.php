@@ -10,4 +10,10 @@ class Urun extends Model
     use SoftDeletes;
     protected $table="urun";
     protected  $guarded=[]; //tüm kolonlar veritabanına eklenebilir
+
+    public  function kategoriler()
+        //urune ait kategorileri getirir
+    {
+        return $this->belongsToMany('App\Models\Kategori','kategori_urun');
+    }
 }

@@ -21,7 +21,7 @@ class UrunTableSeeder extends Seeder
                 'urun_adi'=> $urun_adi,
                 'slug'=>str_slug($urun_adi),
                 'aciklama'=>$faker->sentence(20),
-                'fiyati'=>$faker->randomFloat(3,1,20) //1 ve 20 arasında 3 basamaklı sayılar oluşturma
+                'fiyati'=>$faker->randomFloat(2,1,20) //1 ve 20 arasında 2 basamaklı sayılar oluşturma
             ]);
         }
     }

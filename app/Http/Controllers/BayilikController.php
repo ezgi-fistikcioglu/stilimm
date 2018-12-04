@@ -26,4 +26,8 @@ class BayilikController extends Controller
         return view('bayilik.bayilikBilgileri');
     }
 
+    public function ilan_form()
+    {
+        return view('bayilik.bayilikİlani');
+    }
 }

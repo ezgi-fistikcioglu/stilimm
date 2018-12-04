@@ -17,6 +17,7 @@ Route::get('/kategori/{slug_kategoriadi}','KategoriController@index')->name('kat
 
 Route::get('/urun/{slug_urunadi}','UrunController@index')->name('urun');
 
+Route::post('/ara','UrunController@ara')->name('urun_ara');
 
 Route::get('/sepet', 'SepetController@index')->name('sepet');
 
@@ -42,6 +43,8 @@ Route::group(['prefix'=>'bayilik'],function (){
     Route::get('/bayikaydol','BayilikController@kaydol_form')->name('bayilik.bayilikoturumac');
     Route::get('/badres','BayilikController@index')->name('bayilik.badres');
     Route::get('/buyelik','BayilikController@uyelik_form')->name('bayilik.bayilikBilgileri');
+    Route::get('/bayiilanekle','BayilikController@ilan_form')->name('bayilik.bayilikİlani');
+
 
 
 });

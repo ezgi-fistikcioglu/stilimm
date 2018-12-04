@@ -14,5 +14,11 @@ class Kategori extends Model
     //eğer veritabanına her kolonu eklemek istersek ;
     protected  $guarded=[];
 
+    public function  urunler()
+        //Bir kategorideki ürünleri çekmeyi sağlar
+    {
+        return $this->belongsToMany('App\Models\Urun','kategori_urun');
+    }
+
 
 }
