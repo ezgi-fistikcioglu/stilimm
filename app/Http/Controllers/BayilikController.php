@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Bayilik;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class BayilikController extends Controller
 {
@@ -29,5 +31,18 @@ class BayilikController extends Controller
     public function ilan_form()
     {
         return view('bayilik.bayilikİlani');
+    }
+    public function kaydoll()
+    {
+      $bayilik = Bayilik::create([
+          'magazaadi'    => request('magazaadi'),
+          'email'        => request('email'),
+          'sifre'        => Hash::make(request('sifre')),
+          'telefon_no'   => request('telefon_no'),
+          'akt_anahtari' => Str::random(60),
+          'aktif_mi'     => 0
+      ]);
+      auth()->login($bayilik);
+      return redirect()->route('anasayfa');
     }
 }

@@ -7,12 +7,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Oturum Aç</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="#">
-
+                        <form class="form-horizontal" role="form" method="POST"
+                              action="#">
+                            {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="email" class="col-md-4 control-label">Email</label>
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+                                    <input id="email" type="email" class="form-control" name="email" value="" required
+                                           autofocus>
                                 </div>
                             </div>
 

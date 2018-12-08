@@ -7,10 +7,11 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Kaydol</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="#">
-
+                        <form class="form-horizontal" role="form" method="POST"
+                              action="{{route('bayilik.bayilikkayit')}}">
+                            {{ csrf_field() }}
                             <div class="form-group ">
-                                <label for="name" class="col-md-4 control-label">Mağaza Adı</label>
+                                <label for="magazaadi" class="col-md-4 control-label">Mağaza Adı</label>
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name" value="" required
                                            autofocus>
@@ -57,8 +58,11 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-2">
                                     <div class="chk_label"><input type="checkbox" name="legalbox" value="false">
-                                        Stilim <a onclick="privacyPolicyWindow();" title="Takım Öncülüğü" style="font-size:15px; color:#e59686; ;text-decoration: none;cursor:pointer">İş Birliği ve İlan Sözleşmesi Koşullarını </a>
-                                        'nı okudum ve kabul ediyorum</div>
+                                        Stilim <a onclick="privacyPolicyWindow();" title="Takım Öncülüğü"
+                                                  style="font-size:15px; color:#e59686; ;text-decoration: none;cursor:pointer">İş
+                                            Birliği ve İlan Sözleşmesi Koşullarını </a>
+                                        'nı okudum ve kabul ediyorum
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
