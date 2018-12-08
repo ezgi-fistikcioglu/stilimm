@@ -11,7 +11,7 @@ class KombinTableSeeder extends Seeder
      */
     public function run()
     {
-     kombin::create([
+        DB::table('kombin')->insert([
          'kombin_adi' => str_random(10),
          'aciklama' => str_random(30),
          'fiyati' => rand(10,80),

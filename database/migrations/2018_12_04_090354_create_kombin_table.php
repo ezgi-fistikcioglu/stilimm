@@ -18,7 +18,7 @@ class CreateKombinTable extends Migration
             $table->string('slug',160);
             $table->string('kombin_adi',80);
             $table->text('aciklama');
-            $table->boolean('satilik_mi');
+            //$table->boolean('satilik_mi')->default(0);
             $table->decimal('fiyati',6,3);
             $table->timestamps();
             $table->softDeletes();

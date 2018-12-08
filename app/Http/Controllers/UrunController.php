@@ -18,7 +18,9 @@ class UrunController extends Controller
         $aranan = request()->input('aranan');
         $urunler = Urun::where('urun_adi','like',"%$aranan%")
             ->orWhere('aciklama','like',"%$aranan%")
-            ->get();
+            ->paginate(2) ;
+        //sayfalandrıma işlemi
+
         request()->flash();
         return view('arama',compact('urunler'));
     }

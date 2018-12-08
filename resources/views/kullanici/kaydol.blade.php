@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Kaydol')
+@section('title','Üye ol')
 @section('content')
     <div class="container">
         <div class="row">
@@ -7,12 +7,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Kaydol</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="#">
+                        <form class="form-horizontal" role="form" method="POST" action="{{route('kullanici.kaydol')}}">
+                            {{ csrf_field() }}
 
                             <div class="form-group ">
-                                <label for="name" class="col-md-4 control-label">Kullanıcı Adı</label>
+                                <label for="adsoyad" class="col-md-4 control-label">Ad Soyad</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="" required
+                                    <input id="adsoyad" type="text" class="form-control" name="adsoyad" value="" required
                                            autofocus>
                                 </div>
                             </div>

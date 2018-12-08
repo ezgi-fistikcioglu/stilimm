@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Kombin extends Model
 {
-  use SoftDeletes;
-  protected $table = "kombin";
-  protected $guarded = [];
+    use SoftDeletes;
+    protected $table = "kombin";
+    protected $fillable = ['slug', 'kombin_adi', 'aciklama', 'fiyati'];
+
+    protected $hidden = ['satilik_mi'];
+
 }
