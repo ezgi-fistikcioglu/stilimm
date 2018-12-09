@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BayiKayitMail;
 use App\Models\Bayilik;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -47,6 +48,9 @@ class BayilikController extends Controller
           'akt_anahtari' => Str::random(60),
           'aktif_mi'     => 0
       ]);
+
+      Mail::to(request('email'))->send(new BayiKayitMail($bayilik));
+
       auth()->login($bayilik);
       return redirect()->route('anasayfa');
     }

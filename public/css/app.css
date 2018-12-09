@@ -1,174 +1,174 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);html {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 :focus {
-  outline: none;
+    outline: none;
 }
 
 body {
-  font-family: Raleway, 'Segoe UI', Arial, sans-serif;
-  font-size: 1rem;
+    font-family: Raleway, 'Segoe UI', Arial, sans-serif;
+    font-size: 1rem;
 }
 
 h1 {
-  font-size: 28px;
-  font-weight: 600;
+    font-size: 28px;
+    font-weight: 600;
 }
 
 a {
-  color: #333;
+    color: #333;
 }
 
 #commerce {
-  background-color: #f0f0f0;
+    background-color: #f0f0f0;
 }
 
 #commerce h2 {
-  font-weight: 600;
-  font-size: 1.8rem;
+    font-weight: 600;
+    font-size: 1.8rem;
 }
 
 #commerce h3 {
-  font-size: 1.6rem;
+    font-size: 1.6rem;
 }
 
 #commerce h4 {
-  font-size: 1.4rem;
-  margin-bottom: 5px;
+    font-size: 1.4rem;
+    margin-bottom: 5px;
 }
 
 #commerce .navbar-brand {
-  width: 270px;
+    width: 270px;
 }
 
 #commerce .navbar-brand img {
-  height: 50px;
+    height: 50px;
     width: 150px;
     float: left;
-  margin-top: -15px;
+    margin-top: -15px;
 }
 
 #commerce .panel-theme {
-  border-color: #ddd;
+    border-color: #ddd;
 }
 
 #commerce .panel-theme .panel-heading {
-  color: #333;
-  font-weight: 600;
-  border-color: #ddd;
-  border-top: 2px solid #e52d04;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dfdfdf));
-  background: linear-gradient(to bottom, #fff 0%, #dfdfdf 100%);
+    color: #333;
+    font-weight: 600;
+    border-color: #ddd;
+    border-top: 2px solid #e52d04;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dfdfdf));
+    background: linear-gradient(to bottom, #fff 0%, #dfdfdf 100%);
 }
 
 #commerce .panel-default h3 {
-  font-size: 14px;
-  font-weight: 600;
-  margin: 0 10px 5px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 10px 5px 10px;
 }
 
 #commerce .badge-theme {
-  font-weight: 400;
-  background-color: #9e7480;
-  margin-top: -15px;
+    font-weight: 400;
+    background-color: #9e7480;
+    margin-top: -15px;
 }
 
 #commerce .btn-theme {
-  background-color: #e52d04;
-  color: #fff;
+    background-color: #e52d04;
+    color: #fff;
 }
 
 #commerce .btn-theme:hover {
-  -webkit-filter: contrast(90%);
-          filter: contrast(90%);
+    -webkit-filter: contrast(90%);
+    filter: contrast(90%);
 }
 
 #commerce #navbar-search {
-  width: 400px;
+    width: 400px;
     float: left;
 }
 
 #commerce .carousel {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 #commerce .carousel .carousel-caption {
-  right: 0;
-  left: 0;
-  height: 54px;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
+    right: 0;
+    left: 0;
+    height: 54px;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 #commerce .carousel img {
-  height: 374px !important;
+    height: 374px !important;
 }
 
 #commerce #sidebar-product {
-  height: 374px !important;
+    height: 374px !important;
 }
 
 #commerce .list-group.categories {
-  font-size: 0.8rem;
+    font-size: 0.8rem;
 }
 
 #commerce .bg-content {
-  padding: 10px 15px;
-  background-color: #fff;
-  overflow: hidden;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    padding: 10px 15px;
+    background-color: #fff;
+    overflow: hidden;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 #commerce .products .product {
-  text-align: center;
+    text-align: center;
 }
 
 #commerce .products .product img {
-  height: 200px;
-  border-radius: 4px;
-  margin-bottom: 5px;
-  max-width: 100%;
+    height: 200px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    max-width: 100%;
 }
 
 #commerce .products .product .price {
-  font-size: 20px;
-  font-weight: 600;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 #commerce .nav-tabs {
-  padding-left: 6px;
+    padding-left: 6px;
 }
 
 #commerce .nav-tabs li.active a {
-  font-weight: 600;
-  border-bottom: inherit;
-  margin-top: 3px;
-  border-top: 2px solid #e52d04;
-  background: -webkit-gradient(linear, left bottom, left top, from(#fff), to(#dfdfdf));
-  background: linear-gradient(to top, #fff 0%, #dfdfdf 100%);
+    font-weight: 600;
+    border-bottom: inherit;
+    margin-top: 3px;
+    border-top: 2px solid #e52d04;
+    background: -webkit-gradient(linear, left bottom, left top, from(#fff), to(#dfdfdf));
+    background: linear-gradient(to top, #fff 0%, #dfdfdf 100%);
 }
 
 #commerce .tab-content {
-  padding: 10px;
-  border: 1px solid #ddd;
-  margin-top: -1px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-top: -1px;
 }
 
 #commerce .price {
-  font-size: 24px;
-  font-weight: 600;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 #commerce .price small {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 #commerce footer {
-  background-color: #fff;
-  padding: 50px;
-  margin-top: 20px;
+    background-color: #fff;
+    padding: 50px;
+    margin-top: 20px;
 }
 input.gonder{
     color: #000000;

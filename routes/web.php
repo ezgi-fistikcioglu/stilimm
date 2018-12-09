@@ -55,6 +55,15 @@ Route::get('/anasayfa','KullaniciAnasayfaController@index')->name('kanasayfa');
 Route::get('/aski','askiController@index')->name('aski');
 Route::get('/askibagis','BagisOdemeController@index')->name('bagis');
 
+Route::get('/test/mail',function (){
+    $kullanici = \App\Kullanici::find(1);
+    return new App\Mail\KullaniciKayitMail($kullanici);
+});
+Route::get('/test2/mail',function (){
+    $bayilik = \App\Models\Bayilik::find(1);
+    return new App\Mail\BayiKayitMail($bayilik);
+});
+
 
 
 

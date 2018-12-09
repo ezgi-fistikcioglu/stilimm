@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Kullanici;
+use App\Mail\KullaniciKayitMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -55,6 +56,10 @@ class KullaniciController extends Controller
             'aktif_mi'            => 0
 
         ]);
+
+        Mail::to(request('email'))->send(new KullaniciKayitMail($kullanici));
+
+
         auth()->login($kullanici);
         return redirect()->route('anasayfa');
     }
