@@ -6,22 +6,33 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Kaydol</div>
+
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{route('kullanici.kaydol')}}">
                             {{ csrf_field() }}
-
-                            <div class="form-group ">
+                            <div class="form-group {{ $errors->has('adsoyad') ? 'has-error': '' }}">
                                 <label for="adsoyad" class="col-md-4 control-label">Ad Soyad</label>
                                 <div class="col-md-6">
-                                    <input id="adsoyad" type="text" class="form-control" name="adsoyad" value="" required
-                                           autofocus>
+                                    <input id="adsoyad" type="text" class="form-control" name="adsoyad"
+                                           value="{{old('adsoyad')}}" required autofocus>
+                                    @if($errors->has('adsoyad'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('adsoyad') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="email" class="col-md-4 control-label">Email</label>
+                                <label for="email" class="col-md-4 control-label {{ $errors->has('email') ? 'has-error': '' }}">Email</label>
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="" required>
+                                    <input id="email" type="email" class="form-control" name="email"
+                                           value="{{old('email')}}" required>
+                                    @if($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -40,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="phone" class="col-md-4 control-label">Telefon Numarası</label>
+                                <label for="phone" class="col-md-4 control-label ">Telefon Numarası</label>
                                 <div class="col-md-6">
                                     <input id="phone" type="tel" class="form-control" name="phone" required>
                                 </div>
@@ -55,7 +66,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="birthDay"  class="col-md-4 control-label"> Doğum Tarihi </label>
+                                <label for="birthDay" class="col-md-4 control-label"> Doğum Tarihi </label>
                                 <div class="col-md-6">
                                     <select id="birthDay" name="birthDay" class="day">
                                         <option value="0"> Gün</option>
@@ -200,7 +211,10 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-2">
                                     <div class="chk_label"><input type="checkbox" name="legalbox" value="false">
-                                        Stilim <a onclick="privacyPolicyWindow();" title="Takım Öncülüğü" style="font-size:15px; color:#e59686; ;text-decoration: none;cursor:pointer">Üyelik Sözleşmesi Şartlarını </a> 'nı okudum ve kabul ediyorum</div>
+                                        Stilim <a onclick="privacyPolicyWindow();" title="Takım Öncülüğü"
+                                                  style="font-size:15px; color:#e59686; ;text-decoration: none;cursor:pointer">Üyelik
+                                            Sözleşmesi Şartlarını </a> 'nı okudum ve kabul ediyorum
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">

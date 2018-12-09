@@ -34,6 +34,11 @@ class BayilikController extends Controller
     }
     public function kaydoll()
     {
+        $this->validate(request(),[
+            'magazaadi'  => 'required|min:5|max:60',
+            'email'      => 'required|email|unique:bayilik',
+            'sifre'      => 'required|confirmed|min:5'
+        ]);
       $bayilik = Bayilik::create([
           'magazaadi'    => request('magazaadi'),
           'email'        => request('email'),

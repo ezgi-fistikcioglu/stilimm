@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','BayilikKaydol')
+@section('title','Bayilik Kaydol')
 @section('content')
     <div class="container">
         <div class="row">
@@ -11,17 +11,31 @@
                               action="{{route('bayilik.bayilikkayit')}}">
                             {{ csrf_field() }}
                             <div class="form-group ">
-                                <label for="magazaadi" class="col-md-4 control-label">Mağaza Adı</label>
+                                <label for="magazaadi"
+                                       class="col-md-4 control-label {{ $errors->has('magazaadi') ? 'has-error': '' }}">Mağaza
+                                    Adı</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="" required
-                                           autofocus>
+                                    <input id="name" type="text" class="form-control" name="name"
+                                           value="{{ old('magazaadi')}}" required autofocus>
+                                    @if($errors->has('magazaadi'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('magazaadi') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="email" class="col-md-4 control-label">Email</label>
+                                <label for="email"
+                                       class="col-md-4 control-label {{ $errors->has('email') ? 'has-error': '' }}">Email</label>
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="" required>
+                                    <input id="email" type="email" class="form-control" name="email"
+                                           value="{{old('email')}}" required>
+                                    @if($errors->has('sifre'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('sifre') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 
