@@ -8,13 +8,14 @@
                     <div class="panel-heading">Kaydol</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{route('kullanici.kaydol')}}">
+                        <form class="form-horizontal" role="form" method="POST"
+                              action= "{{ route('kullanici.kaydol') }}">
                             {{ csrf_field() }}
                             <div class="form-group {{ $errors->has('adsoyad') ? 'has-error': '' }}">
                                 <label for="adsoyad" class="col-md-4 control-label">Ad Soyad</label>
                                 <div class="col-md-6">
                                     <input id="adsoyad" type="text" class="form-control" name="adsoyad"
-                                           value="{{old('adsoyad')}}" required autofocus>
+                                           value="{{ old('adsoyad') }}" required autofocus>
                                     @if($errors->has('adsoyad'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('adsoyad') }}</strong>
@@ -24,10 +25,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="email" class="col-md-4 control-label {{ $errors->has('email') ? 'has-error': '' }}">Email</label>
+                                <label for="email"
+                                       class="col-md-4 control-label {{ $errors->has('email') ? 'has-error': '' }}">Email</label>
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control" name="email"
-                                           value="{{old('email')}}" required>
+                                           value="{{ old('email') }}" required>
                                     @if($errors->has('email'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('email') }}</strong>
@@ -37,9 +39,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password" class="col-md-4 control-label">Şifre</label>
+                                <label for="sifre" class="col-md-4 control-label">Şifre</label>
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" required>
+                                    <input id="sifre" type="password" class="form-control" name="sifre" required>
                                 </div>
                             </div>
 

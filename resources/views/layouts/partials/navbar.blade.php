@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{route('kanasayfa')}}">
+            <a class="navbar-brand" href="{{ route('anasayfa') }}">
                 <img src="/img/logo.png">
             </a>
         </div>

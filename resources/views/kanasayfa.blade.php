@@ -1,6 +1,7 @@
 @extends('layouts.master2')
-@section('title','KullanıcıAnasayfa')
+@section('title','Kullanıcı Anasayfa')
 @section('content')
+    @include('layouts.partials.alert')
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -48,13 +49,15 @@
                                         <div align="left"><img src="/img/bb.jpg" width="50" height="50">Öykü</div>
                                         <br>
                                         <div align="left">Öykü</div>
-                                        <td >
-                                            <div class="resim"><img src="/img/stl.jpg"  width="500" height="250">
+                                        <td>
+                                            <div class="resim"><img src="/img/stl.jpg" width="500" height="250">
                                                 <br>
                                                 <div class="begen">
-                                                    <a href="#"><i class="fa fa-thumbs-up" style="font-size:24px"></i> Beğen<span
+                                                    <a href="#"><i class="fa fa-thumbs-up" style="font-size:24px"></i>
+                                                        Beğen<span
                                                             class="badge badge-theme">1000</span></a>
-                                                    <a href="#"><i class="fa fa-comment" style="font-size:24px"></i>Yorum Yap</a>
+                                                    <a href="#"><i class="fa fa-comment" style="font-size:24px"></i>Yorum
+                                                        Yap</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -73,9 +76,11 @@
                                             <div class="resim"><img src="/img/kll.jpg" width="500" height="250">
                                                 <br>
                                                 <div class="begen">
-                                                    <a href="#"><i class="fa fa-thumbs-up" style="font-size:24px"></i> Beğen<span
+                                                    <a href="#"><i class="fa fa-thumbs-up" style="font-size:24px"></i>
+                                                        Beğen<span
                                                             class="badge badge-theme">1000</span></a>
-                                                    <a href="#"><i class="fa fa-comment" style="font-size:24px"></i>Yorum Yap</a>
+                                                    <a href="#"><i class="fa fa-comment" style="font-size:24px"></i>Yorum
+                                                        Yap</a>
                                                 </div>
                                             </div>
                                         </td>
