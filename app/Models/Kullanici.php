@@ -13,7 +13,7 @@ class Kullanici extends Authenticatable
 
     protected $table="kullanici";
 
-    protected $fillable = ['adsoyad', 'email', 'sifre', 'telefon_no','cinsiyet', 'dogum_tarihi', 'aktivasyon_anahtari', 'aktif_mi'];
+    protected $fillable = ['adsoyad', 'email', 'sifre', 'telefon_no', 'dogum_tarihi', 'aktivasyon_anahtari', 'aktif_mi'];
 
     protected $hidden = ['sifre', 'aktivasyon_anahtari'];
         //Bu alanların sorguda çekilmesini istemiyoruz

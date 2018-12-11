@@ -19,7 +19,7 @@ class CreateKullaniciTable extends Migration
             $table->string('email',150)->unique();
             $table->string('sifre',60);
             $table->mediumInteger('telefon_no')->unique();
-            $table->string('cinsiyet',5)->nullable()->change();
+           // $table->string('cinsiyet',5)->nullable()->change();
             $table->date('dogum_tarihi');
             $table->string('aktivasyon_anahtari',60)->nullable();
             $table->boolean('aktif_mi')->default(0);

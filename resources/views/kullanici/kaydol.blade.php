@@ -11,6 +11,7 @@
                         <form class="form-horizontal" role="form" method="POST"
                               action= "{{ route('kullanici.kaydol') }}">
                             {{ csrf_field() }}
+                            <meta name="csrf-token" content="{{ csrf_token() }}">
                             <div class="form-group {{ $errors->has('adsoyad') ? 'has-error': '' }}">
                                 <label for="adsoyad" class="col-md-4 control-label">Ad Soyad</label>
                                 <div class="col-md-6">
