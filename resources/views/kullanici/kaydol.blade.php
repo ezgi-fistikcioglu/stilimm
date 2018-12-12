@@ -9,8 +9,11 @@
 
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST"
-                              action= "{{ route('kullanici.kaydol') }}">
+                              action="{{ route('kullanici.kaydol') }}">
                             {{ csrf_field() }}
+                            <meta charset="utf-8">
+                            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                            <meta name="viewport" content="width=device-width, initial-scale=1">
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                             <div class="form-group {{ $errors->has('adsoyad') ? 'has-error': '' }}">
                                 <label for="adsoyad" class="col-md-4 control-label">Ad Soyad</label>
@@ -69,9 +72,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="birthDay" class="col-md-4 control-label"> Doğum Tarihi </label>
+                                <label for="dogum_tarihi" class="col-md-4 control-label"> Doğum Tarihi </label>
                                 <div class="col-md-6">
-                                    <select id="birthDay" name="birthDay" class="day">
+                                    <select id="birthDay" name="dogum_tarihi" class="day">
                                         <option value="0"> Gün</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>

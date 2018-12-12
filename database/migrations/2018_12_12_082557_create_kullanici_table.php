@@ -13,17 +13,17 @@ class CreateKullaniciTable extends Migration
      */
     public function up()
     {
+        //dd(request()->all());
         Schema::create('kullanici', function (Blueprint $table) {
             $table->increments('id');
             $table->string('adsoyad',60);
             $table->string('email',150)->unique();
             $table->string('sifre',60);
-            $table->mediumInteger('telefon_no')->unique();
-           // $table->string('cinsiyet',5)->nullable()->change();
-            $table->date('dogum_tarihi');
+            $table->string('telefon_no',10)->unique()->nullable();
+            $table->string('cinsiyet',5)->nullable();
+            //$table->date('dogum_tarihi')->default(now());
             $table->string('aktivasyon_anahtari',60)->nullable();
             $table->boolean('aktif_mi')->default(0);
-            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });

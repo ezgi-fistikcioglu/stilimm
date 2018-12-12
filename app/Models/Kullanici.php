@@ -8,13 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Kullanici extends Authenticatable
 {
+
     use SoftDeletes;
-    //protected $connection = 'mysql';
 
     protected $table="kullanici";
 
-    protected $fillable = ['adsoyad', 'email', 'sifre', 'telefon_no', 'dogum_tarihi', 'aktivasyon_anahtari', 'aktif_mi'];
-
+    //protected $fillable = ['adsoyad', 'email', 'sifre', 'telefon_no','cinsiyet','dogum_tarihi','aktivasyon_anahtari', 'aktif_mi'];
+    protected $guarded =[];
     protected $hidden = ['sifre', 'aktivasyon_anahtari'];
         //Bu alanların sorguda çekilmesini istemiyoruz
 
@@ -23,5 +23,6 @@ class Kullanici extends Authenticatable
         return $this->sifre;
     }
    // public $timestamps = false;
+
 
 }
