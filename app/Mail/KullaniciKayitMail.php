@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Kullanici;
+use App\Models\Kullanici;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;

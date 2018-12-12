@@ -58,7 +58,7 @@ class KullaniciController extends Controller
         ]);
         Mail::to(request('email'))->send(new KullaniciKayitMail($kullanici));
 
-        Request::all();
+        //Request::all();
         auth()->login($kullanici);
         return redirect()->route('anasayfa');
 
