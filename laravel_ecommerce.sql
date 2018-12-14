@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 14 Ara 2018, 14:23:04
+-- Üretim Zamanı: 15 Ara 2018, 00:07:00
 -- Sunucu sürümü: 10.1.34-MariaDB
 -- PHP Sürümü: 7.2.7
 
@@ -33,12 +33,24 @@ CREATE TABLE `bayilik` (
   `magazaadi` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sifre` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telefon_no` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `uyelik_turu` varchar(7) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `akt_anahtari` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `aktif_mi` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `bayilik`
+--
+
+INSERT INTO `bayilik` (`id`, `magazaadi`, `email`, `sifre`, `telefon_no`, `uyelik_turu`, `akt_anahtari`, `aktif_mi`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'deneme', 'deneme@gmail.com', '$2y$10$ayVPG5EBiRc8/I3reCkO1uXPFX.hH92BuDb6hI0tGGvRdu1aGigSa', '5536437003', '1', 'gCvxJnYA2Diy9J1bLVbtCKBbxPW5Om51uR1xMWSoycyHBF5apwJ1RBud0EeJ', 0, '2018-12-14 19:08:28', '2018-12-14 19:08:28', NULL),
+(3, 'deneme', 'cccc@gmail.com', '$2y$10$iG6DTrLBnNY3cDUQOuPxLed9dWQu.HOMuHfAHun23BFhqyBBk3p1.', '5538437003', '2', '1qOhabt36mvRMb72TIj4uuRKZx8UDPhjhIMp7jCGxaKmcGQokBiglGymKaHL', 0, '2018-12-14 19:10:55', '2018-12-14 19:10:55', NULL),
+(6, 'sevecen', 'sevecen@gmail.com', '$2y$10$BeFX.lNBhD30jDF4mErZqOFQhKCqCxbHopMHzhNpb4DXpv9BEqzqG', '5536425003', 'Sirket', 'h845GV0dSiOl0Wsw6FXZX0khqWwMjkY9rQxiD4YTK1PWNDwx7lVMTSUEl5qX', 0, '2018-12-14 19:32:15', '2018-12-14 19:32:15', NULL),
+(8, 'b', 'xd@gmail.com', '$2y$10$qIoxgiryqFuderqOOrdeUufcKGmE0ZVld93UeVHK2uDHHifdWPqdq', '5536437003', 'Sirket', 'Z8AuWCRyDHy8BmCT1IfrPS4SI0LaFQJPaI5TLmwvTCFV6Rboym0qOU0fMNw4', 0, '2018-12-14 20:02:22', '2018-12-14 20:02:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -129,7 +141,8 @@ INSERT INTO `kombin` (`id`, `kullanici_id`, `kombin_adi`, `aciklama`, `fiyati`, 
 (2, 4, 'akdjfk', 'kjsdfhk', NULL, 0, '8hySi67BdmNgFiS3Dv18TcvvidBJxiaS6P7a9H9z.jpeg', '2018-12-14 09:12:26', '2018-12-14 09:12:26', NULL),
 (3, 4, 'kjhkj', 'kjhkhj', NULL, 1, 'SJKDlD1u7drVfQ1jTTKObVT5tNSlKiH5loi1Jc5V.jpeg', '2018-12-14 09:12:51', '2018-12-14 09:12:51', NULL),
 (4, 4, 'ömasjdfk', 'kjhg', '10.00', 1, 'XfhELYitMFyF3iZ6E7qB1M5j2Ez2eDKMDyvX8Jtr.jpeg', '2018-12-14 09:14:08', '2018-12-14 09:14:08', NULL),
-(5, 4, 'dsff', 'ffvvb', '80.00', 1, 'p1zawz6VQtRK1bUjsxIAVJ9DH1xDxwUT5xtSX9Kt.jpeg', '2018-12-14 10:01:19', '2018-12-14 10:01:19', NULL);
+(5, 4, 'dsff', 'ffvvb', '80.00', 1, 'p1zawz6VQtRK1bUjsxIAVJ9DH1xDxwUT5xtSX9Kt.jpeg', '2018-12-14 10:01:19', '2018-12-14 10:01:19', NULL),
+(6, 4, 'deneme', 'deneme', '85.00', 1, 'HFtYdmdh4Dhz3fuYWXXNK2Xch9JGPf4KRLnaOZtX.jpeg', '2018-12-14 17:44:57', '2018-12-14 17:44:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -160,7 +173,7 @@ CREATE TABLE `kullanici` (
 INSERT INTO `kullanici` (`id`, `adsoyad`, `email`, `sifre`, `telefon_no`, `cinsiyet`, `dogum_tarihi`, `aktivasyon_anahtari`, `aktif_mi`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'ali koç', 'ali@gmail.com', '$2y$10$SWmE6NbQFtBRXGtTla10BeVPBemT71Xm1o.E6PyXQLmEi3d34TvQ6', '5556437003', 'Male', '1996-02-16', 'yHEswRM3hSCtAXfQnkfjNkbJitMlzpHRfOZ2lFYxrpY4J5zX02b7wIvGumQH', 0, '1', '2018-12-14 04:52:13', '2018-12-14 04:52:13', NULL),
 (3, 'yeter koç', 'yeter@gmail.com', '$2y$10$qnOJlzUG38Pe24NQ4WrrTepdyTOb/ctjwe8NBw9IkoWgyDIaEgJx6', '5556437023', 'Male', '1987-01-19', 'E4ldB8l4WHFWgICfcS2DpE9CSV5j1GzeAipT9RQhLB2mynqtEOJmvNyCNDu0', 0, '2', '2018-12-14 04:55:46', '2018-12-14 04:55:46', NULL),
-(4, 'xd veremli', 'xd@gmail.com', '$2y$10$0q3fajpKFtrFu8TvrirwLedyZBN6/Xpb8aEVtrzAL4umw6tiB5sue', '5536527003', 'Male', '1983-01-19', 'N2QDDGQB0mbQYtVCDqSb7ami10FEINkSdBVNGH6RvEa3CLt3R9TYNAoLL0sV', 0, 'vYHXAO4Tm2O8gR0EqNPe51q8M2Ha2qY8sibTBLizFcGOBjjYTXFCZfvTctU0', '2018-12-14 05:42:32', '2018-12-14 05:42:32', NULL),
+(4, 'xd veremli', 'xd@gmail.com', '$2y$10$0q3fajpKFtrFu8TvrirwLedyZBN6/Xpb8aEVtrzAL4umw6tiB5sue', '5536527003', 'Male', '1983-01-19', 'N2QDDGQB0mbQYtVCDqSb7ami10FEINkSdBVNGH6RvEa3CLt3R9TYNAoLL0sV', 0, 'jdsEF5yMPPTUnpaPUerMxaLK3WdOjouLkGx60xUlTAPqbV5qZg1GTV8bU0wZ', '2018-12-14 05:42:32', '2018-12-14 05:42:32', NULL),
 (5, 'Ezgi Fıstıkçıoğlu', 'fistikciogluezgi@gmail.com', '$2y$10$PMrDJA84gGPiaJH9fj8h5ObPubW.k6ePWDxDvRG.bj1eqEZEp5BcS', '5536437003', 'Female', '1995-04-12', 'e7N2Iwhc1zGj6O5XEmik1lrQA0oZBQt1NyT6vVEMavNsTqoIzaRqdhdIkO4h', 0, '4', '2018-12-14 09:16:58', '2018-12-14 09:16:58', NULL);
 
 -- --------------------------------------------------------
@@ -186,6 +199,38 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2018_12_04_110348_create_kategori_urun_table', 1),
 (5, '2018_12_06_190201_create_bayilik_table', 1),
 (6, '2018_12_12_082557_create_kullanici_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `sepet`
+--
+
+CREATE TABLE `sepet` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `kullanici_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `sepet_urun`
+--
+
+CREATE TABLE `sepet_urun` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `sepet_id` int(10) UNSIGNED NOT NULL,
+  `urun_id` int(10) UNSIGNED NOT NULL,
+  `adet` int(11) NOT NULL,
+  `fiyati` decimal(5,2) NOT NULL,
+  `durum` varchar(30) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -284,6 +329,18 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Tablo için indeksler `sepet`
+--
+ALTER TABLE `sepet`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `sepet_urun`
+--
+ALTER TABLE `sepet_urun`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Tablo için indeksler `urun`
 --
 ALTER TABLE `urun`
@@ -297,7 +354,7 @@ ALTER TABLE `urun`
 -- Tablo için AUTO_INCREMENT değeri `bayilik`
 --
 ALTER TABLE `bayilik`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `kategori`
@@ -315,7 +372,7 @@ ALTER TABLE `kategori_urun`
 -- Tablo için AUTO_INCREMENT değeri `kombin`
 --
 ALTER TABLE `kombin`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `kullanici`
@@ -328,6 +385,18 @@ ALTER TABLE `kullanici`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `sepet`
+--
+ALTER TABLE `sepet`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `sepet_urun`
+--
+ALTER TABLE `sepet_urun`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `urun`
