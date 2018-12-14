@@ -45,7 +45,7 @@ Route::group(['prefix' => 'kullanici'], function () {
 
 });
 Route::get('/test/mail', function () {
-    $kullanici = \App\Kullanici::find(1);
+    $kullanici = \App\Models\Kullanici::find(1);
     return new App\Mail\KullaniciKayitMail($kullanici);
 });
 

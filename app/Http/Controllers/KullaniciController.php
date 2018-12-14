@@ -77,7 +77,7 @@ class KullaniciController extends Controller
 
         //Request::all();
         auth()->login($kullanici);
-        return redirect()->route('kanasayfa');
+        return redirect()->route('anasayfa');
 
     }
 

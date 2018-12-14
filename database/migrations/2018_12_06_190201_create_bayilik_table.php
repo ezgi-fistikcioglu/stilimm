@@ -18,10 +18,12 @@ class CreateBayilikTable extends Migration
             $table->string('magazaadi',60);
             $table->string('email',150)->unique();
             $table->string('sifre',60);
-            //$table->smallInteger('telefon_no',10)->unique();
+            $table->string('telefon_no',10)->unique()->nullable();
+            $table->string('uyelik_turu',5)->nullable();
             $table->string('akt_anahtari',60)->nullable();
             $table->boolean('aktif_mi')->default(0);
             $table->timestamps();
+            $table->rememberToken();
             $table->softDeletes();
         });
     }

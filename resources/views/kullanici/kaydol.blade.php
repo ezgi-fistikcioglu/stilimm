@@ -17,7 +17,8 @@
                             <div class="form-group {{ $errors->has('') ? 'has-error': '' }}">
                                 <label for="adsoyad" class="col-md-4 control-label">Ad Soyad</label>
                                 <div class="col-md-6">
-                                    <input id="adsoyad" type="text" class="form-control" name="adsoyad" value="{{ old('adsoyad') }}" autofocus>
+                                    <input id="adsoyad" type="text" class="form-control" name="adsoyad"
+                                           value="{{ old('adsoyad') }}" autofocus>
                                     @if($errors->has('adsoyad'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('adsoyad') }}</strong>
@@ -52,13 +53,15 @@
                             <div class="form-group">
                                 <label for="password-confirm" class="col-md-4 control-label">Şifre (Tekrar)</label>
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="sifre_confirmation">
+                                    <input id="password-confirm" type="password" class="form-control"
+                                           name="sifre_confirmation">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="phone" class="col-md-4 control-label ">Telefon Numarası</label>
                                 <div class="col-md-6">
-                                    <input id="phone" type="tel" class="form-control" name="phone" value="{{ old('phone') }}">
+                                    <input id="phone" type="tel" class="form-control" name="phone"
+                                           value="{{ old('phone') }}">
                                     @if($errors->has('phone'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('phone') }}</strong>
@@ -69,15 +72,19 @@
                             <div class="form-group">
                                 <label for="cinsiyet" class="col-md-4 control-label">Cinsiyet</label>
                                 <div class="col-md-6">
-                                        <INPUT type="radio" id="gender_male" name="gender" value="Male" {{(old('gender')=='Male') ? 'checked' : null}}>
+                                    <INPUT type="radio" id="gender_male" name="gender"
+                                           value="Male" {{(old('gender')=='Male') ? 'checked' : null}}>
                                         <label for="gender_male">Erkek</label>
-                                        <INPUT type="radio" id="gender_female" name="gender" value="Female" {{(old('gender')=='Female') ? 'checked' : null}}>
-                                        <label for="gender_female">Kadın</label>
-                                    @if($errors->has('cinsiyet'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('cinsiyet') }}</strong>
-                                        </span>
-                                    @endif
+                                        <INPUT type="radio" id="gender_female" name="gender"
+                                               value="Female" {{(old('gender')=='Female') ? 'checked' : null}}>
+                                            <label for="gender_female">Kadın</label>
+                                        </INPUT>
+                                    </INPUT>
+                                            @if($errors->has('cinsiyet'))
+                                                <span class="help-block">
+                                               <strong>{{ $errors->first('cinsiyet') }}</strong>
+                                               </span>
+                                            @endif
                                 </div>
                             </div>
                             <div class="form-group">
