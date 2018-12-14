@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Intervention\Image\Exception\NotFoundException;
@@ -57,5 +58,11 @@ class Handler extends ExceptionHandler
             return response()->view('errors.404',compact('exception'),404);
         }
         return parent::render($request, $exception);
+    }
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $request->expectsJson()
+            ? response()->json(['message'=> 'Unauthenticated.'], 401)
+            : redirect()->guest(route('kullanici.oturumac'));
     }
 }

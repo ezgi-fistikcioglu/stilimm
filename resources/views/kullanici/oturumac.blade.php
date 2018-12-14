@@ -8,7 +8,7 @@
                     <div class="panel-heading">Oturum Aç</div>
                     <div class="panel-body">
                         @include('layouts.partials.errors')
-                        <form class="form-horizontal" role="form" method="POST" action="{{'kullanici.oturumac'}}">
+                        <form class="form-horizontal" role="form" method="POST">
                             {{ csrf_field() }}
 
                             <div class="form-group">
@@ -28,8 +28,8 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="benihatirla" checked> Beni hatırla
+                                        <label for="benihatirla">
+                                            <input id="benihatirla" type="checkbox" name="benihatirla" checked> Beni hatırla
                                         </label>
                                     </div>
                                 </div>

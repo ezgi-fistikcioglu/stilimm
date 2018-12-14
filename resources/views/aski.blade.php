@@ -1,4 +1,4 @@
-@extends('layouts.master2')
+@extends('layouts.master')
 @section('title','Askı Projesi')
 @section('content')
     <div class="header-banner-cover" xmlns="http://www.w3.org/1999/html">
@@ -27,6 +27,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection

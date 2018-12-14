@@ -15,7 +15,7 @@ class Kullanici extends Authenticatable
 
     protected $fillable = ['adsoyad', 'email', 'sifre', 'telefon_no','cinsiyet','dogum_tarihi','aktivasyon_anahtari', 'aktif_mi'];
     //protected $guarded =[];
-    protected $hidden = ['sifre', 'aktivasyon_anahtari'];
+    protected $hidden = ['sifre', 'aktivasyon_anahtari', 'remember_token'];
         //Bu alanların sorguda çekilmesini istemiyoruz
 
     public function getAuthPassword()

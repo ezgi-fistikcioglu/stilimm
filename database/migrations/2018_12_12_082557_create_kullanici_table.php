@@ -21,10 +21,11 @@ class CreateKullaniciTable extends Migration
             $table->string('sifre',60);
             $table->string('telefon_no',10)->unique()->nullable();
             $table->string('cinsiyet',5)->nullable();
-            //$table->date('dogum_tarihi')->default(now());
+            $table->date('dogum_tarihi')->default(now());
             $table->string('aktivasyon_anahtari',60)->nullable();
             $table->boolean('aktif_mi')->default(0);
             $table->timestamps();
+            $table->rememberToken();
             $table->softDeletes();
         });
     }

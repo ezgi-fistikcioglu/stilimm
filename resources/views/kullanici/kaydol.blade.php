@@ -6,7 +6,6 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Kaydol</div>
-
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST"
                               action="{{ route('kullanici.kaydol') }}">
@@ -15,11 +14,10 @@
                             <meta http-equiv="X-UA-Compatible" content="IE=edge">
                             <meta name="viewport" content="width=device-width, initial-scale=1">
                             <meta name="csrf-token" content="{{ csrf_token() }}">
-                            <div class="form-group {{ $errors->has('adsoyad') ? 'has-error': '' }}">
+                            <div class="form-group {{ $errors->has('') ? 'has-error': '' }}">
                                 <label for="adsoyad" class="col-md-4 control-label">Ad Soyad</label>
                                 <div class="col-md-6">
-                                    <input id="adsoyad" type="text" class="form-control" name="adsoyad"
-                                           value="{{ old('adsoyad') }}" required autofocus>
+                                    <input id="adsoyad" type="text" class="form-control" name="adsoyad" value="{{ old('adsoyad') }}" autofocus>
                                     @if($errors->has('adsoyad'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('adsoyad') }}</strong>
@@ -27,13 +25,12 @@
                                     @endif
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="email"
                                        class="col-md-4 control-label {{ $errors->has('email') ? 'has-error': '' }}">Email</label>
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email"
-                                           value="{{ old('email') }}" required>
+                                    <input id="email" type="text" class="form-control" name="email"
+                                           value="{{ old('email') }}">
                                     @if($errors->has('email'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('email') }}</strong>
@@ -41,41 +38,53 @@
                                     @endif
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="sifre" class="col-md-4 control-label">Şifre</label>
                                 <div class="col-md-6">
-                                    <input id="sifre" type="password" class="form-control" name="sifre" required>
+                                    <input id="sifre" type="password" class="form-control" name="sifre">
+                                    @if($errors->has('sifre'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('sifre') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="password-confirm" class="col-md-4 control-label">Şifre (Tekrar)</label>
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                           name="password_confirmation" required>
+                                    <input id="password-confirm" type="password" class="form-control" name="sifre_confirmation">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="phone" class="col-md-4 control-label ">Telefon Numarası</label>
                                 <div class="col-md-6">
-                                    <input id="phone" type="tel" class="form-control" name="phone" required>
+                                    <input id="phone" type="tel" class="form-control" name="phone" value="{{ old('phone') }}">
+                                    @if($errors->has('phone'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('phone') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="cinsiyet" class="col-md-4 control-label">Cinsiyet</label>
                                 <div class="col-md-6">
-                                    <INPUT type="radio" name="sex" value="Male"> Erkek
-                                        <INPUT type="radio" name="sex" value="Female"> Kadın
-                                        </INPUT>
-                                    </INPUT>
+                                        <INPUT type="radio" id="gender_male" name="gender" value="Male" {{(old('gender')=='Male') ? 'checked' : null}}>
+                                        <label for="gender_male">Erkek</label>
+                                        <INPUT type="radio" id="gender_female" name="gender" value="Female" {{(old('gender')=='Female') ? 'checked' : null}}>
+                                        <label for="gender_female">Kadın</label>
+                                    @if($errors->has('cinsiyet'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('cinsiyet') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="dogum_tarihi" class="col-md-4 control-label"> Doğum Tarihi </label>
                                 <div class="col-md-6">
-                                    <select id="birthDay" name="dogum_tarihi" class="day">
-                                        <option value="0"> Gün</option>
+                                    <select id="birthDay" name="dogum_gun" class="day">
+                                        <option>Gün</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -108,8 +117,8 @@
                                         <option value="30">30</option>
                                         <option value="31">31</option>
                                     </select>
-                                    <select id="birthMonth" name="birthMonth" class="month">
-                                        <option value="0"> Ay</option>
+                                    <select id="birthMonth" name="dogum_ay" class="month">
+                                        <option> Ay</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -123,8 +132,8 @@
                                         <option value="11">11</option>
                                         <option value="12">12</option>
                                     </select>
-                                    <select id="birthYear" name="birthYear" class="year">
-                                        <option value="0"> Yıl</option>
+                                    <select id="birthYear" name="dogum_yil" class="year">
+                                        <option>Yıl</option>
                                         <option value="2000">2000</option>
                                         <option value="1999">1999</option>
                                         <option value="1998">1998</option>
@@ -208,10 +217,27 @@
                                         <option value="1920">1920</option>
                                     </select>
                                 </div>
-                                <div class="errorMessage" data-errormessagefor="birthDay"><span
-                                        class="top-arrow"></span>
-                                    <div class="errorText">
-                                    </div>
+                                @if($errors->has('dogum_gun'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dogum_gun') }}</strong>
+                                    </span>
+                                    <br>
+                                @endif
+                                @if($errors->has('dogum_ay'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dogum_ay') }}</strong>
+                                    </span>
+                                    <br>
+                                @endif
+                                @if($errors->has('dogum_yil'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dogum_yil') }}</strong>
+                                    </span>
+                                    <br>
+                                @endif
+                                <div class="errorMessage" data-errormessagefor="birthDay">
+                                    <span class="top-arrow"></span>
+                                    <div class="errorText"></div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -221,6 +247,11 @@
                                                   style="font-size:15px; color:#e59686; ;text-decoration: none;cursor:pointer">Üyelik
                                             Sözleşmesi Şartlarını </a> 'nı okudum ve kabul ediyorum
                                     </div>
+                                    @if($errors->has('legalbox'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('legalbox') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">

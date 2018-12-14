@@ -35,10 +35,8 @@
                     </div>
                 </div>
             </div>
-
             <div class="container">
                 <div class="row">
-
                     <div class="col-md-6">
                         <div class="panel panel-default " id="profil">
                             <div class="panel-heading">Kombinler</div>
@@ -46,52 +44,45 @@
                         <div class="panel panel-default " id="profil">
                             <div class="panel-body">
                                 <table>
-                                    <tr>
-                                        <div align="left"><img src="/img/bb.jpg" width="50" height="50">Ezgi</div>
-                                        <br>
-                                        <div align="left">Ezgi</div>
-                                        <td>
-                                            <div class="resim"><img src="/img/stl.jpg" width="500" height="250">
-                                                <br>
-                                                <div class="begen">
-                                                    <a href="#"><i class="fa fa-thumbs-up" style="font-size:24px"></i>
-                                                        Beğen<span
-                                                            class="badge badge-theme">1000</span></a>
-                                                    <a href="#"><i class="fa fa-comment" style="font-size:24px"></i>Yorum
-                                                        Yap</a>
+                                    @foreach($kombinler as $kombin)
+                                        <tr>
+                                            <td>
+                                                <div align="left">
+                                                    <img src="/img/bb.jpg" width="50"
+                                                         height="50">{{$kombin->kullanici->adsoyad}}
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                <br>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="resim"><img
+                                                        src="{{url('/storage/kombin/'.$kombin->fotograf)}}" width="500">
+                                                    <br>
+                                                    <div class="begen">
+                                                        <a href="#"><i class="fa fa-thumbs-up"
+                                                                       style="font-size:24px"></i>
+                                                            Beğen<span
+                                                                class="badge badge-theme">1000</span></a>
+                                                        <a href="#"><i class="fa fa-comment" style="font-size:24px"></i>Yorum
+                                                            Yap</a>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <br>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>
-                        <div class="panel panel-default " id="profil">
-                            <div class="panel-body">
-                                <table>
-                                    <tr>
-                                        <div align="left"><img src="/img/111.jpg" width="50" height="50">Erva</div>
-                                        <br>
-                                        <div align="left">Erva</div>
-                                        <td>
-                                            <div class="resim"><img src="/img/kll.jpg" width="500" height="250">
-                                                <br>
-                                                <div class="begen">
-                                                    <a href="#"><i class="fa fa-thumbs-up" style="font-size:24px"></i>
-                                                        Beğen<span
-                                                            class="badge badge-theme">600</span></a>
-                                                    <a href="#"><i class="fa fa-comment" style="font-size:24px"></i>Yorum
-                                                        Yap</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-
                     </div>
                     <div class="col-md-3">
+                        @if(auth()->check())
+                        <a href="{{url('kullanici/kombin')}}">
+                            <button type="button" style="width:100%; margin-bottom: 15px;" class="btn btn-primary">Kombin Ekle</button>
+                        </a>
+                        @endif
                         <div class="panel panel-default" id="sidebar-product">
                             <div class="panel-heading">Kazanan Kişi</div>
                             <div class="panel-body">

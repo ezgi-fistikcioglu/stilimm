@@ -13,6 +13,7 @@ return [
     |
     */
 
+
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
@@ -67,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Kullanici::class,
+            'model' => App\Models\Kullanici::class,
         ],
 
         // 'users' => [
