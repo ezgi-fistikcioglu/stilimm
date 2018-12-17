@@ -25,10 +25,12 @@
                             <div class="image-div clearfix">
                                 <div style="width: 700px; height: 250px;">
 
-                                    <img src="/img/mhw203.jpg" width="260" height="260">
+                                    <img src="/img/fa.jpg" width="260" height="240">
                                 </div>
 
-                                <input type="submit" class="gonder" value="Askıya Git"/>
+                                <a href="{{url('aski')}}">
+                                    <button type="button" style="width:100%; margin-bottom: 15px;" class="btn btn-warning">Askıya Git</button>
+                                </a>
 
                             </div>
                         </div>
@@ -57,7 +59,7 @@
                                         <tr>
                                             <td>
                                                 <div class="resim"><img
-                                                        src="{{url('/storage/kombin/'.$kombin->fotograf)}}" width="500">
+                                                        src="{{url('/storage/kombin/'.$kombin->fotograf)}}" width="510" height="510" >
                                                     <br>
                                                     <div class="begen">
                                                         <a href="#"><i class="fa fa-thumbs-up"
@@ -85,23 +87,24 @@
                         @endif
                         <div class="panel panel-default" id="sidebar-product">
                             <div class="panel-heading">Kazanan Kişi</div>
-                            <div class="panel-body">
-                                <table>
-                                    <tr>
-                                        <div align="left"><img src="/img/6.jpg" width="50" height="50">Gamze</div>
-                                        <br>
-                                        <div align="left">Gamze</div>
-                                        <td>
-                                            <div class="kazanan">
-                                                <a href="#">
-                                                    <img src="/img/style.jpg" class="img-responsive">
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                            <a href="#">
+                                <div class="panel-body" style="width:200%;  margin-bottom: 15px;">
+                                    <table>
+                                        <tr>
+                                            <div align="left"><img src="/img/6.jpg" width="50" height="50">Gamze</div>
+                                            <br>
+                                            <div align="left">Gamze</div>
+                                            <td>
+                                                <div class="kazanan">
+                                                    <a href="#">
+                                                        <img src="/img/style.jpg" width="210" height="210" class="img-responsive">
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

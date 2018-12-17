@@ -6,6 +6,7 @@ use App\Models\Sepet;
 use App\Models\sepet_urun;
 use App\Models\Urun;
 use Cart;
+use Validator;
 use Illuminate\Http\Request;
 
 class SepetController extends Controller
@@ -65,6 +66,17 @@ class SepetController extends Controller
     }
     public function guncelle($rowId)
     {
+        $validator = Validator::make(request()->all(),[
+            'adet' =>'required|numeric|between:0,5'
+        ]);
+
+        if ($validator->fails())
+        {
+            session()->flash('mesaj_tur','danger');
+            session()->flash('mesaj','Adet değeri 1 ile 5 arasında olmalıdır.');
+            return response()->json(['success'=>false]);
+        }
+
         Cart::update($rowId, request('adet'));
         //güncelle metodu ajax ile kullanılan bir metot olduğu için burada redirect işlemini kullanamıyoruz
         session()->flash('mesaj_tur','success');

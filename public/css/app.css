@@ -170,23 +170,9 @@ a {
     padding: 50px;
     margin-top: 20px;
 }
-input.gonder{
-    color: #000000;
-    background-color: #CC6666;
-    border-top: 2px #CC6600 solid;
-    border-left: 2px #CC6600 solid;
-    border-bottom: 2px #CC6600 solid;
-    border-right: 2px #CC6600 solid;
-    margin-left: 90px;
-    align-items: center;
-    font:bold 12px Arial, Helvetica, sans-serif;
-}
+
 
 #commerce .resim{
-    margin-left: auto;
-    margin-right:auto;
-    width: 510px;
-    position: relative;
     -webkit-box-shadow: inset 0px 0px 0px 1px rgba(232, 232, 232, 1);
     -moz-box-shadow: inset 0px 0px 0px 1px rgba(232, 232, 232, 1);
     box-shadow: inset 0px 0px 0px 1px rgba(232, 232, 232, 1);
@@ -197,41 +183,12 @@ input.gonder{
     margin-bottom: 15px;
     border-radius: 6px; text-align:center;
 }
-#commerce .kazanan{
-    margin-left: auto;
-    margin-right:auto;
-    width: 200px;
-    height: 200px;
-    position: relative;
-    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(232, 232, 232, 1);
-    -moz-box-shadow: inset 0px 0px 0px 1px rgba(232, 232, 232, 1);
-    box-shadow: inset 0px 0px 0px 1px rgba(232, 232, 232, 1);
-    border: 5px solid #ccc;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    background-position: center center;
-    margin-bottom: 15px;
-    border-radius: 6px; text-align:center;
-}
+
 #commerce .yorum{
     float:left;
     font-size:14px;
     position: relative;
     left: -5px;
-    top: -125px;
-    margin-bottom: 5px;
-    border-top:1px solid #e59686;
-    border-left:1px solid #e59686;
-    border-right:1px solid #e59686;
-    border-bottom:1px solid #e59686;
-    color:#333;
-    width:auto;
-}
-#commerce .gonderr{
-    float:left;
-    font-size:14px;
-    position: relative;
-    left: 4px;
     top: -125px;
     margin-bottom: 5px;
     border-top:1px solid #e59686;
