@@ -12,7 +12,7 @@ class Urun extends Model
     protected  $guarded=[]; //tüm kolonlar veritabanına eklenebilir
 
     public  function kategoriler()
-        //urune ait kategorileri getirir
+        //urune ait kategorileri getirir nerde
     {
         return $this->belongsToMany('App\Models\Kategori','kategori_urun');
     }

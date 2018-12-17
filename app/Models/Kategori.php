@@ -20,5 +20,4 @@ class Kategori extends Model
         return $this->belongsToMany('App\Models\Urun','kategori_urun');
     }
 
-
 }

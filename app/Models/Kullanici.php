@@ -24,5 +24,9 @@ class Kullanici extends Authenticatable
     }
    // public $timestamps = false;
 
+//    public function SepetUrunleri()
+//    {
+//        return $this->hasOne(sepet::class,"id" , "kullanici_id");
+//    }
 
 }
