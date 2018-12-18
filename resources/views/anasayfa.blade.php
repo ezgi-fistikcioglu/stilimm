@@ -87,7 +87,7 @@
                         @endif
                         <div class="panel panel-default" id="sidebar-product">
                             <div class="panel-heading">Kazanan Kişi</div>
-                            <a href="#">
+                            <a href="{{url('profil/5')}}">
                                 <div class="panel-body" style="width:200%;  margin-bottom: 15px;">
                                     <table>
                                         <tr>

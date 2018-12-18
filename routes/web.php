@@ -25,10 +25,8 @@ Route::group(['prefix'=> 'sepet'], function (){
     Route::post('/ekle', 'SepetController@ekle')->name('sepet.ekle');
     Route::delete('/kaldir/{rowid}', 'SepetController@kaldir')->name('sepet.kaldir');
     Route::delete('/bosalt', 'SepetController@bosalt')->name('sepet.bosalt');
-    Route::patch('/guncelle/{rowId}', 'SepetController@guncelle')->name('sepet.guncelle');
+    Route::get('/guncelle/{rowId}', 'SepetController@guncelle')->name('sepet.guncelle');
 });
-
-
 
 Route::group(['middleware'=>'auth'],function (){
     Route::get('/odeme', 'OdemeController@index')->name('odeme');
@@ -50,22 +48,24 @@ Route::group(['prefix' => 'kullanici'], function () {
     Route::get('/kombin', 'KullaniciController@kombin_form')->name('kullanici.kombin');
     Route::post('/kombin', 'KullaniciController@kombin_post')->name('kullanici.kombin.post');
     Route::get('/aktiflestir/{anahtar}','KullaniciController@aktiflestir')->name('aktiflestir');
-
 });
+
+Route::group(['prefix' => 'profil'], function () {
+    Route::get('/{profil_id}','ProfilController@index')->name('profil');
+});
+
 Route::get('/test/mail', function () {
     $kullanici = \App\Models\Kullanici::find(1);
     return new App\Mail\KullaniciKayitMail($kullanici);
 });
 
 Route::group(['prefix' => 'bayilik'], function () {
-
     Route::get('/bayiuyelik', 'BayilikController@giris_form')->name('bayilik.bayilikoturumac');
     Route::get('/bayikaydol', 'BayilikController@kaydol_form')->name('bayilik.bayilikkayit');
     Route::post('/bayikaydol', 'BayilikController@kaydoll');
     Route::get('/badres', 'BayilikController@index')->name('bayilik.badres');
     Route::get('/buyelik', 'BayilikController@uyelik_form')->name('bayilik.bayilikBilgileri');
     Route::get('/bayiilanekle', 'BayilikController@ilan_form')->name('bayilik.bayilikİlani');
-
 });
 
 Route::get('/test2/mail', function () {

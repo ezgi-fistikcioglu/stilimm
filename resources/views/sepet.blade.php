@@ -63,10 +63,12 @@
                             <td>{{ $urunCartItem->price }} ₺</td>
                             <td>
                                 {{--//ürün adet arttır ve azalt kısmı (js/app.js içinde geliyoruz)--}}
-                                <a href="#" class="btn btn-xs btn-default urun-adet-azalt"
+                                <?php $eksiltme =  $urunCartItem->qty - 1; ?>
+                                <a href="{{url("/sepet/guncelle/{$urunCartItem->rowId}?adet={$eksiltme}")}}" class="btn btn-xs btn-default urun-adet-azalt"
                                    data-id="{{$urunCartItem->rowId }}" data-adet="{{ $urunCartItem->qty-1 }}">-</a>
                                 <span style="padding: 10px 20px">{{ $urunCartItem->qty }}</span>
-                                <a href="#" class="btn btn-xs btn-default urun-adet-artir"
+                                <?php $artirma =  $urunCartItem->qty + 1; ?>
+                                <a href="{{url("/sepet/guncelle/{$urunCartItem->rowId}?adet={$artirma}")}}" class="btn btn-xs btn-default urun-adet-artir"
                                    data-id="{{$urunCartItem->rowId }}" data-adet="{{ $urunCartItem->qty-1 }}">+</a>
                             </td>
                             <td class="text-right">
