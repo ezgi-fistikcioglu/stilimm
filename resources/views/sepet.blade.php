@@ -13,31 +13,10 @@
                         <th>Adet</th>
                         <th>Tutar</th>
                     </tr>
-
-
                     <br>
                     <hr>
                     sepetinizde {{Cart::count()}} adet ürün var...<br>
-                    {{--//Helperı view da kullanmak da bu kadar basit --}}
                     <br>
-                    {{--@foreach(Sepet() as $sepetUrun)--}}
-                    {{--{{$sepetUrun->urun_id}}--}}
-
-                    {{--/Modelde gösterdiğim Urunler sorgusunu burda kullanduk işte. Dedikki sırayla--}}
-                    {{--Sepeturun e ait Urunlerin ürün adını al türkçesi bu :)--}}
-                    {{--Şu mantığı bir kaç kez sen kendin kullanmaya çalış anlıcan daha iyi, zaten zorunda kalcan ne nedir diye--}}
-                    {{----}}
-                    {{--Ürün adı = {{$sepetUrun->Urunler->urun_adi}} <br>--}}
-                    {{--<hr>--}}
-                    {{--Açıklama = {{$sepetUrun->Urunler->aciklama}}<br>--}}
-                    {{--<hr>--}}
-                    {{--Fiyat =   {{$sepetUrun->Urunler->fiyati}}<br>--}}
-                    {{--<hr>--}}
-                    {{--// {{dd($sepetUrun)}}--}}
-
-                    {{--<br>Diğer ürün<br>--}}
-                    {{--<hr>--}}
-                    {{--@endforeach--}}
                     @foreach(Cart::content() as $urunCartItem)
                         <tr>
                             <td style="width: 120px;">
@@ -63,12 +42,14 @@
                             <td>{{ $urunCartItem->price }} ₺</td>
                             <td>
                                 {{--//ürün adet arttır ve azalt kısmı (js/app.js içinde geliyoruz)--}}
-                                <?php $eksiltme =  $urunCartItem->qty - 1; ?>
-                                <a href="{{url("/sepet/guncelle/{$urunCartItem->rowId}?adet={$eksiltme}")}}" class="btn btn-xs btn-default urun-adet-azalt"
+                                <?php $eksiltme = $urunCartItem->qty - 1; ?>
+                                <a href="{{url("/sepet/guncelle/{$urunCartItem->rowId}?adet={$eksiltme}")}}"
+                                   class="btn btn-xs btn-default urun-adet-azalt"
                                    data-id="{{$urunCartItem->rowId }}" data-adet="{{ $urunCartItem->qty-1 }}">-</a>
                                 <span style="padding: 10px 20px">{{ $urunCartItem->qty }}</span>
-                                <?php $artirma =  $urunCartItem->qty + 1; ?>
-                                <a href="{{url("/sepet/guncelle/{$urunCartItem->rowId}?adet={$artirma}")}}" class="btn btn-xs btn-default urun-adet-artir"
+                                <?php $artirma = $urunCartItem->qty + 1; ?>
+                                <a href="{{url("/sepet/guncelle/{$urunCartItem->rowId}?adet={$artirma}")}}"
+                                   class="btn btn-xs btn-default urun-adet-artir"
                                    data-id="{{$urunCartItem->rowId }}" data-adet="{{ $urunCartItem->qty-1 }}">+</a>
                             </td>
                             <td class="text-right">
@@ -98,9 +79,9 @@
                 </form>
                 <a href="#" class="btn btn-success pull-right btn-lg">Ödeme Yap</a>
 
-                @else
-                   <p>Sepetinizde Ürün Bulunmamaktadır!</p>
-                @endif
+            @else
+                <p>Sepetinizde Ürün Bulunmamaktadır!</p>
+            @endif
 
         </div>
     </div>

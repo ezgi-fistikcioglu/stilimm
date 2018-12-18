@@ -13,74 +13,93 @@ class SepetController extends Controller
 {
     public function index()
     {
-//        $sepetUser = auth()->user()->id;
-//        $sepetUrunleri = sepet_urun::with('Urunler')->where('kullanici_id', $sepetUser)->get();
-
-//        $sepet = sepet::with('SepetUrunleri')->get();
-//        $sepetUrunu = $sepetUrunleri->Urunler->id;
-
-        // Öncelikle burda sepete sadece yönlendirme yaptık, diğer kodlar yani sepet içeriğindeki ürünler zaten helperda var 2 lemedik işi
-
         return view('sepet');
     }
-
 
     public function ekle()
     {
         $urun = Urun::find(request('id'));
 
-//        $sepetUser = new sepet();
-//        $sepetUser->kullanici_id = auth()->user()->id;
-//        $sepetUser->save();
+        $cartItem = Cart::add($urun->id, $urun->urun_adi, 1, $urun->fiyati, ['slug' => $urun->slug]);
+        if (auth()->check())
+        { //sadece kullanıcı girişi yapmış kişiler için geçerli alan
+            $aktif_sepet_id = session('aktif_sepet_id');
+            if (!isset($aktif_sepet_id)) {
+                $aktif_sepet = Sepet::create([
+                    'kullanici_id' => auth()->id()
+                ]);
+                $aktif_sepet_id = $aktif_sepet->id;
+                session()->put('aktif_sepet_id', $aktif_sepet_id);
+            }
 
-        Cart::add($urun->id, $urun->urun_adi, 1, $urun->fiyati, ['slug' => $urun->slug]);
-//        $sepet = new sepet_urun();
-//        $sepet->urun_id = $urun->id;
-//        $sepet->fiyati = $urun->fiyati;
-//        $sepet->adet = '2';
-//        $sepet->durum = '1';
-//        $sepet->sepet_id = $sepetUser->id;
-//        $sepet->kullanici_id = auth()->user()->id;
-//        $sepet->save();
-
+            sepet_urun::updateOrCreate(
+                ['sepet_id' => $aktif_sepet_id, 'urun_id' => $urun->id],
+                //eğer sepet_id ve urun_id varsa bunu adet, fiyati ve durum olarak güncelliyor eğer yokse tüm alanlarla beraber yeni bir kayıt oluşturuyor
+                ['adet' => $cartItem->qty, 'fiyati' => $urun->fiyati, 'durum' => 'Beklemede']
+            );
+        }
 
         return redirect()->route('sepet')
             ->with('mesaj_tur', 'success')
             ->with('mesaj', 'Ürün Sepete Eklendi.');
     }
-
+//rowId sepetteki kaydın satır_id sini ifade eder
     public function kaldir($rowid)
     {
+        if (auth()->check())
+        {
+            $aktif_sepet_id =session('aktif_sepet_id');
+            $cartItem = Cart::get($rowid); //bu sayede sepetteki kaydın tüm bilgilerine erişmiş oluyoruz
+            sepet_urun::where('sepet_id',$aktif_sepet_id)->where('urun_id', $cartItem->id)->delete();
+            //$cartItem->id ile ürünün gerçek id'sini elde etmiş oluyoruz
+        }
         Cart::remove($rowid);
 
         return redirect()->route('sepet')
             ->with('mesaj_tur', 'success')
             ->with('mesaj', 'Ürün Sepetten Kaldırıldı.');
     }
-    public  function bosalt()
+
+    public function bosalt()
     {
-       Cart::destroy();
-        return redirect()->route('sepet')  //sepet sayfasına yönlendirme
-            ->with('mesaj_tur', 'success')
+        if (auth()->check())
+        {
+            $aktif_sepet_id = session('aktif_sepet_id');
+            sepet_urun::where('sepet_id', $aktif_sepet_id)->delete();
+        }
+        Cart::destroy();
+        return redirect()->route('sepet')//sepet sayfasına yönlendirme
+        ->with('mesaj_tur', 'success')
             ->with('mesaj', 'Ürün Sepetiniz boşaltıldı.');
     }
+
     public function guncelle($rowId)
     {
-        $validator = Validator::make(request()->all(),[
-            'adet' =>'required|numeric|between:0,5'
+        $validator = Validator::make(request()->all(), [
+            'adet' => 'required|numeric|between:0,5'
         ]);
 
-        if ($validator->fails())
-        {
-            session()->flash('mesaj_tur','danger');
-            session()->flash('mesaj','Adet değeri 1 ile 5 arasında olmalıdır.');
+        if ($validator->fails()) {
+            session()->flash('mesaj_tur', 'danger');
+            session()->flash('mesaj', 'Adet değeri 1 ile 5 arasında olmalıdır.');
             return redirect('/sepet');
+        }
+        if (auth()->check())
+        {
+            $aktif_sepet_id=session('aktif_sepet_id');
+            $cartItem= Cart::get($rowId);
+
+            if (request('adet')==0)
+                sepet_urun::where('sepet_id',$aktif_sepet_id)->where('urun_id',$cartItem->id)->delete();
+            else
+            sepet_urun::where('sepet_id',$aktif_sepet_id)->where('urun_id',$cartItem->id)
+            ->update(['adet'=> request('adet')]);
         }
 
         Cart::update($rowId, request('adet'));
         //güncelle metodu ajax ile kullanılan bir metot olduğu için burada redirect işlemini kullanamıyoruz
-        session()->flash('mesaj_tur','success');
-        session()->flash('mesaj','Adet bilgisi güncellendi');
+        session()->flash('mesaj_tur', 'success');
+        session()->flash('mesaj', 'Adet bilgisi güncellendi');
 
         return redirect('/sepet');
     }
