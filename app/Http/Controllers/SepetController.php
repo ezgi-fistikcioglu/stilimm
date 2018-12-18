@@ -74,7 +74,7 @@ class SepetController extends Controller
         {
             session()->flash('mesaj_tur','danger');
             session()->flash('mesaj','Adet değeri 1 ile 5 arasında olmalıdır.');
-            return response()->json(['success'=>false]);
+            return redirect('/sepet');
         }
 
         Cart::update($rowId, request('adet'));
@@ -82,6 +82,6 @@ class SepetController extends Controller
         session()->flash('mesaj_tur','success');
         session()->flash('mesaj','Adet bilgisi güncellendi');
 
-        return response()->json(['success'=>true]);
+        return redirect('/sepet');
     }
 }
