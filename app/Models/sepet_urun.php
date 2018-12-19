@@ -11,8 +11,8 @@ class sepet_urun extends Model
     protected  $table = "sepet_urun";
     protected $guarded = [];
 //burda mantık sepet urun tablosuna ait ürünleri çekmektir/ neye göre çekiyoruz urun_id ye ve Urun tablosundaki id sutununa göre
-    public function Urunler()
+    public function Urun()
     {
-        return $this->hasOne(Urun::class,"id" , "urun_id");
+        return $this->belongsTo('App\Models\Urun');
     }
 }

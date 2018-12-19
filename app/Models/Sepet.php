@@ -13,6 +13,9 @@ class Sepet extends Model
 
     protected $guarded = [];
 
-
+public function  siparis()
+{
+    return $this->belongsTo('App\Models\Siparis');
+}
 
 }

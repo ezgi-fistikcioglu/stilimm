@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Kullanici;
 use App\Models\Kombin;
 use App\Mail\KullaniciKayitMail;
+use App\Models\KullaniciDetay;
+use App\Models\Sepet;
+use App\Models\sepet_urun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
@@ -12,6 +15,9 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Validator;
+use Cart;
+
+
 
 class KullaniciController extends Controller
 {
@@ -33,6 +39,32 @@ class KullaniciController extends Controller
 
         if (auth()->attempt(['email' => request('email'), 'password' => request('sifre')], request()->has('benihatirla'))) {
             request()->session()->regenerate();
+            $aktif_sepet_id = Sepet::firstOrCreate(['kullanici_id' => auth()->id()])->id;
+            //kullanici-id'sini giris yapan kullanıcının id'sinden alıyoruz
+            //kullanıcıyı eğer vt de bulursa ona ait ilk kaydı alacaktır eğer bulamazsa k.id si bu değer olan kaydı vt'de oluşturacaktır
+            session()->put('aktif_sepet_id', $aktif_sepet_id);
+
+            if (Cart::count() > 0) {
+                foreach (Cart::content() as $cartItem) {
+                    sepet_urun::updadeOrCreate( //varsa güncelle yoksa ekle
+                        ['sepet_id' => $aktif_sepet_id, 'urun_id' => $cartItem->id],
+                        ['adet' => $cartItem->qty, 'fiyati' => $cartItem->price, 'durum' => 'Beklemede']
+                    );
+                }
+            }
+            //vt'deki tüm verileri session'da yeniden oluşturmak için boşalttık ve daha sonravt'deki tüm ürünleri otomatik olarak sepete yani sessiona eklemiş olduk
+            Cart::destroy();
+            //sessionda'ki tüm ürünleri temizliyoruz çünkü vt ile birleştirdik
+
+            $sepetUrunler = sepet_urun::where('sepet_id', $aktif_sepet_id)->get();
+            //vt'deki sepet_id'si $aktif_sepet_id olan tüm ürünleri buluyoruz
+
+            foreach ($sepetUrunler as $sepetUrun) {
+                //sepet_urun modeli içerisinden ürüne erişeceğimiz ilişki fonk. oluşturulur(sepet_urun'e gidin)
+                Cart::add($sepetUrun->urun->id, $sepetUrun->urun->urun_adi, $sepetUrun->adet, $sepetUrun->fiyati, ['slug'=> $sepetUrun->urun->slug]);
+            }
+
+
             return redirect()->intended('/');
         } else {
             $errors = ['email' => 'Hatalı giriş'];
@@ -59,7 +91,7 @@ class KullaniciController extends Controller
             'legalbox' => 'required',
         ]);
 
-        if($validation->fails())  {
+        if ($validation->fails()) {
             return redirect('/kullanici/kaydol')->withErrors($validation)->withInput();
         }
 
@@ -69,10 +101,13 @@ class KullaniciController extends Controller
             'sifre' => Hash::make(request('sifre')),
             'telefon_no' => request('phone'),
             'cinsiyet' => request('gender'),
-            'dogum_tarihi' => request('dogum_yil').'-'.request('dogum_ay').'-'.request('dogum_gun'),
+            'dogum_tarihi' => request('dogum_yil') . '-' . request('dogum_ay') . '-' . request('dogum_gun'),
             'aktivasyon_anahtari' => Str::random(60),
             'aktif_mi' => 0
         ]);
+
+        //KullaniciDetay dediğimiz anda bu sınıfı kullanarak boş bir kullanıcıDetay kaydını otomatik olarak oluşturacaktır
+        $kullanici->detay()->save(new KullaniciDetay());
         Mail::to(request('email'))->send(new KullaniciKayitMail($kullanici));
 
         //Request::all();
@@ -88,16 +123,16 @@ class KullaniciController extends Controller
 
     public function kombin_form()
     {
-        if (!auth()->check()){
+        if (!auth()->check()) {
             return redirect('/');
         }
         return view('kullanici.kombin');
 
     }
 
-    public function kombin_post( Request $request )
+    public function kombin_post(Request $request)
     {
-        if (!auth()->check()){
+        if (!auth()->check()) {
             return redirect('/');
         }
         $validation = Validator::make(request()->except('_token'), [
@@ -108,7 +143,7 @@ class KullaniciController extends Controller
             'fiyati' => 'required|numeric',
         ]);
 
-        if($validation->fails())  {
+        if ($validation->fails()) {
             return response()->json($validation->messages());
             return redirect('/kullanici/kombin')->withErrors($validation)->withInput();
         }
@@ -119,8 +154,8 @@ class KullaniciController extends Controller
         $kombin = Kombin::create([
             'kombin_adi' => request()->get('kombin_adi'),
             'aciklama' => request()->get('aciklama'),
-            'satilik_mi' => (request()->get('satilik_mi')=='evet') ? 1 : 0,
-            'fiyati' => (request()->get('satilik_mi')=='evet') ? request()->get('fiyati') : null,
+            'satilik_mi' => (request()->get('satilik_mi') == 'evet') ? 1 : 0,
+            'fiyati' => (request()->get('satilik_mi') == 'evet') ? request()->get('fiyati') : null,
             'fotograf' => $fotograf,
             'kullanici_id' => auth()->user()->id,
         ]);
@@ -155,7 +190,8 @@ class KullaniciController extends Controller
                 ->with('mesaj_tur', 'warning');
         }
     }
-    public  function oturumukapat()
+
+    public function oturumukapat()
     {
         auth()->logout();
         request()->session()->flush();
