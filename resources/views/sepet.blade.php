@@ -23,11 +23,6 @@
                                 <a href="{{ route('urun',$urunCartItem->options->slug) }}">
                                     <img src="http://via.placeholder.com/120x100?text=UrunResmi">
                                 </a>
-
-                                {{--<a href="{{ route('urun',["slug"=>$urunCartItem->options->slug]) }}">--}}
-                                {{--<img src="http://via.placeholder.com/120x100?text=UrunResmi">--}}
-                                {{--</a>--}}
-                                {{--<img src="http://via.placeholder.com/120x100?text=UrunResmi">--}}
                             </td>
                             <td>
                                 <a href="{{ route('urun', $urunCartItem->options->slug) }}">
@@ -77,7 +72,7 @@
                     {{ method_field('DELETE') }}
                     <input type="submit" class="btn btn-info pull-left" value="Sepeti Boşalt">
                 </form>
-                <a href="#" class="btn btn-success pull-right btn-lg">Ödeme Yap</a>
+                <a href=" {{ route('odeme') }}" class="btn btn-success pull-right btn-lg">Ödeme Yap</a>
 
             @else
                 <p>Sepetinizde Ürün Bulunmamaktadır!</p>
