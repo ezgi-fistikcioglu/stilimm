@@ -51,7 +51,8 @@
                                             <td>
                                                 <div align="left">
                                                     <img src="/img/bb.jpg" width="50"
-                                                         height="50">{{$kombin->kullanici->adsoyad}}
+                                                         height="50">
+                                                    {{$kombin->kullanici->adsoyad}}
                                                 </div>
                                                 <br>
                                             </td>

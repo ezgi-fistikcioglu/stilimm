@@ -2,15 +2,15 @@
 @section('title','Ödeme')
 @section('content')
     <div class="container">
-        <form action="{{route('odemeyap')}}" method="post">
             <div class="bg-content">
                 <h2>Ödeme</h2>
+                <form action="{{ route('odemeyap') }}" method="post">
                 <div class="row">
                     <div class="col-md-5">
                         <h3>Ödeme Bilgileri</h3>
                         <div class="form-group">
-                            <label for="kartno">Kredi Kartı Numarası</label>
-                            <input type="text" class="form-control kredikarti_cvv" id="kart_numarasi"
+                            <label for="kart_numarasi">Kredi Kartı Numarası</label>
+                            <input type="text" class="form-control kredikarti" id="kart_numarasi"
                                    name="kart_numarasi" style="font-size:20px;" required>
                         </div>
                         <div class="form-group">
@@ -27,7 +27,7 @@
                                     Yıl
                                     <select id="son_kullanma_tarihi_yil" name="son_kullanma_tarihi_yil"
                                             class="form-control" required>
-                                        <option>2018</option>
+                                        <option>2019</option>
                                     </select>
                                 </div>
                             </div>
@@ -55,7 +55,9 @@
                                 </div>
                             </div>
                         </form>
-                        <button type="submit" class="btn btn-success btn-lg">Ödeme Yap</button>
+                        <a href=" {{ route('siparisler') }}" class="btn btn-success btn-lg">Ödeme Yap</a>
+
+                        {{--<button type="submit" class="btn btn-success btn-lg">Ödeme Yap</button>--}}
                     </div>
                     <div class="col-md-7">
                         <h4>Ödenecek Tutar</h4>
@@ -68,7 +70,7 @@
                                 <div class="form-group">
                                     <label for="adsoyad">Ad Soyad</label>
                                     <input type="text" class="form-control" name="adsoyad" id="adsoyad"
-                                           value="{{auth()->user()->adsoyad }}" required>
+                                           value="{{ auth()->user()->adsoyad }}" required>
                                     {{--adsoyad kullanıcı tablosundan olan bir değerdir. Bu yüzden user ile çektik--}}
                                 </div>
                             </div>
@@ -86,22 +88,20 @@
                                 <div class="form-group">
                                     <label for="telefon">Telefon</label>
                                     <input type="text" class="form-control telefon" name="telefon" id="telefon"
-                                           value="{{$kullanici_detay->telefon }}">
+                                           value="{{ $kullanici_detay->telefon }}">
                                 </div>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="ceptelefonu">Cep Telefonu</label>
                                     <input type="text" class="form-control" name="ceptelefonu" id="ceptelefonu"
-                                           value="{{$kullanici_detay->ceptelefonu }}" required>
+                                           value="{{ $kullanici_detay->ceptelefonu }}" required>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-
-            </div>
         </form>
     </div>
     </div>

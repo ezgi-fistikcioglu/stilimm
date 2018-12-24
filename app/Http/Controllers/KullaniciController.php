@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Kullanici;
 use App\Models\Kombin;
 use App\Mail\KullaniciKayitMail;
@@ -39,14 +40,22 @@ class KullaniciController extends Controller
 
         if (auth()->attempt(['email' => request('email'), 'password' => request('sifre')], request()->has('benihatirla'))) {
             request()->session()->regenerate();
-            $aktif_sepet_id = Sepet::firstOrCreate(['kullanici_id' => auth()->id()])->id;
-            //kullanici-id'sini giris yapan kullanıcının id'sinden alıyoruz
-            //kullanıcıyı eğer vt de bulursa ona ait ilk kaydı alacaktır eğer bulamazsa k.id si bu değer olan kaydı vt'de oluşturacaktır
+            $aktif_sepet_id = Sepet::aktif_sepet_id();
+            if (is_null($aktif_sepet_id))
+            {
+                $aktif_sepet_id = Sepet::insertGetId([
+                    'kullanici_id' => auth()->user()->id
+                ]);
+            }
+//            $aktif_sepet_id = Sepet::firstOrCreate(['kullanici_id' => auth()->id()])->id;
+//            kullanici-id'sini giris yapan kullanıcının id'sinden alıyoruz
+//            kullanıcıyı eğer vt de bulursa ona ait ilk kaydı alacaktır eğer bulamazsa k.id si bu değer olan kaydı vt'de oluşturacaktır
             session()->put('aktif_sepet_id', $aktif_sepet_id);
 
             if (Cart::count() > 0) {
                 foreach (Cart::content() as $cartItem) {
-                    sepet_urun::updadeOrCreate( //varsa güncelle yoksa ekle
+                    sepet_urun::updadeOrCreate(
+                        //varsa güncelle yoksa ekle
                         ['sepet_id' => $aktif_sepet_id, 'urun_id' => $cartItem->id],
                         ['adet' => $cartItem->qty, 'fiyati' => $cartItem->price, 'durum' => 'Beklemede']
                     );

@@ -28,6 +28,7 @@ class CreateKullaniciTable extends Migration
             $table->rememberToken();
             $table->softDeletes();
         });
+
     }
 
     /**

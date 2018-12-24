@@ -19,7 +19,7 @@ class OdemeController extends Controller
                 ->with('mesaj','Ödeme İşlemi İçin Oturum Açmanız Veya Kullanıcı Kaydı Yapmanız Gerekmektedir.');
         }
         //sepette ürün yoksa ödeme sayfasında kullanıcıyı bilgilendirmemiz gerekli
-        elseif (count(Cart::content())==0)
+        else if (count(Cart::content())==0)
         { //content ile tüm ürünleri çekmiş olacağız
             return redirect()->route('anasayfa')
                 ->with('mesaj_tur','info')
@@ -36,15 +36,17 @@ class OdemeController extends Controller
 //        formdan gelen tüm bilgileri request ile çekiyoruz
         $siparis['sepet_id']=session('aktif_sepet_id');
         $siparis['banka']= "Garanti";
-        $siparis['taksit_sayisi']=1;
+        $siparis['taksit_sayisi'] = 1;
         $siparis['durum']="Siparişiniz alındı";
-        $siparis['siparis_tutari']=Cart::subtotal();
+        $siparis['siparis_tutari']= Cart::subtotal();
+        //subtotal ile kdv'siz tutar vt'de tutulacak
 
         Siparis::create($siparis);
         //Siparis modeli içindeki sadece bu bilgileri vt'ye ekleyecektir diğer bilgileri eklemeyecektir
         Cart::destroy(); //şimdi sepetteki tüm ürünleri temizliyoruz
         session()->forget('aktif_sepet_id');
         //session içerisinde yer alan aktif_sepet_id'sini de siliyoruz
+
         return redirect()->route('siparisler')
             ->with('mesaj_tur','success')
             ->with('mesaj','Ödemeniz Başarılı Bir Şekilde Gerçekleştirildi.');
