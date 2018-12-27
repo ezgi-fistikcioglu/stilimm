@@ -1,4 +1,4 @@
-@extends('layouts.master2')
+@extends('layouts.master')
 @section('title','Bayilik İlanlarım')
 @section('content')
     <div class="header-banner-cover">

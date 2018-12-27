@@ -4,7 +4,8 @@
     <div class="container">
             <div class="bg-content">
                 <h2>Ödeme</h2>
-                <form action="{{ route('odemeyap') }}" method="post">
+                @include('layouts.partials.alert')
+                <form action="{{ route('odemeyap') }}" method="post" id="odeme">
                 <div class="row">
                     <div class="col-md-5">
                         <h3>Ödeme Bilgileri</h3>
@@ -54,8 +55,9 @@
                                         ediyorum.</label>
                                 </div>
                             </div>
+                            @csrf
                         </form>
-                        <a href=" {{ route('siparisler') }}" class="btn btn-success btn-lg">Ödeme Yap</a>
+                        <a href="#" onclick="javascript: $('#odeme').submit();"class="btn btn-success btn-lg">Ödeme Yap</a>
 
                         {{--<button type="submit" class="btn btn-success btn-lg">Ödeme Yap</button>--}}
                     </div>

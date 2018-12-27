@@ -10,7 +10,7 @@ class sepet_urun extends Model
     use SoftDeletes;
     protected  $table = "sepet_urun";
     protected $guarded = [];
-    public function Urun()
+    public function urun()
     {
         return $this->belongsTo('App\Models\Urun');
     }

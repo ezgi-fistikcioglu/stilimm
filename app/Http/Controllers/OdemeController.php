@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Siparis;
+use Validator;
 use Illuminate\Http\Request;
 use Cart;
 
@@ -32,6 +33,20 @@ class OdemeController extends Controller
     }
     public function odemeyap()
     {
+        $validator = Validator::make(request()->all(), [
+            'kart_numarasi' => 'required',
+            'son_kullanma_tarihi_yil' => 'required',
+            'son_kullanma_tarihi_ay' => 'required',
+            'cardcvv2' => 'required',
+            'adsoyad' => 'required',
+            'telefon' => 'required',
+            'ceptelefonu' => 'required',
+        ]);
+        if ($validator->fails()) {
+            session()->flash('mesaj_tur', 'danger');
+            session()->flash('mesaj', 'Bütün alanmalar doldurulmalıdır! ');
+            return redirect('odeme');
+        }
         $siparis = request()->all();
 //        formdan gelen tüm bilgileri request ile çekiyoruz
         $siparis['sepet_id']=session('aktif_sepet_id');

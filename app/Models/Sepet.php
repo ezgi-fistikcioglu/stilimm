@@ -17,6 +17,10 @@ class Sepet extends Model
     {
         return $this->belongsTo('App\Models\Siparis');
     }
+    public function sepet_urunler()
+    {
+        return $this->hasMany('App\Models\sepet_urun');
+    }
     public  static function  aktif_sepet_id()
     {
         $aktif_sepet = DB::table('sepet as s')
@@ -29,5 +33,8 @@ class Sepet extends Model
 
         if (!is_null($aktif_sepet)) return $aktif_sepet->id;
     }
-
+    public function sepet_urun_adet()
+    {
+        return DB::table('sepet_urun')->where('sepet_id', $this->id)->sum('adet');
+    }
 }

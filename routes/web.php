@@ -79,6 +79,10 @@ Route::get('/test2/mail', function () {
 Route::get('/aski', 'askiController@index')->name('aski');
 Route::get('/askibagis', 'BagisOdemeController@index')->name('bagis');
 
+Route::group(['prefix'=>'ajax'],function (){
+    Route::post('/begen','AjaxController@begen');
+});
+
 
 Auth::routes();
 

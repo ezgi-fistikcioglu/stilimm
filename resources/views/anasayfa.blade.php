@@ -63,7 +63,7 @@
                                                         src="{{url('/storage/kombin/'.$kombin->fotograf)}}" width="510" height="510" >
                                                     <br>
                                                     <div class="begen">
-                                                        <a href="#"><i class="fa fa-thumbs-up"
+                                                        <a href="javascript: void(0);" onclick="javascript: begen( {{$kombin->id}} );";><i class="fa fa-thumbs-up"
                                                                        style="font-size:24px"></i>
                                                             Beğen<span
                                                                 class="badge badge-theme">1000</span></a>
@@ -113,5 +113,14 @@
             </div>
         </div>
     </div>
-
+    <script>
+        function begen( combin_id ) {
+            $.post( "{{url('/ajax/begen')}}", {
+                combin_id: combin_id,
+                _token: '{{csrf_token()}}',
+            }).done(function( data ) {
+                console.log(data);
+            });
+        }
+    </script>
 @endsection
