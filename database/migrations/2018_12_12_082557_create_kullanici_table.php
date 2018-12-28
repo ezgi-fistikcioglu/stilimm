@@ -24,6 +24,7 @@ class CreateKullaniciTable extends Migration
             $table->date('dogum_tarihi')->default(now());
             $table->string('aktivasyon_anahtari',60)->nullable();
             $table->boolean('aktif_mi')->default(0);
+            $table->boolean('yonetici_mi')->default(0);
             $table->timestamps();
             $table->rememberToken();
             $table->softDeletes();
