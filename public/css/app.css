@@ -185,18 +185,13 @@ a {
 }
 
 #commerce .yorum{
-    float:left;
     font-size:14px;
-    position: relative;
     left: -5px;
     top: -125px;
-    margin-bottom: 5px;
-    border-top:1px solid #e59686;
-    border-left:1px solid #e59686;
-    border-right:1px solid #e59686;
-    border-bottom:1px solid #e59686;
+    margin: auto auto 5px 5px;
     color:#333;
-    width:auto;
+    width:100%;
+    text-align: left;
 }
 
 #commerce .begen{
@@ -228,4 +223,8 @@ a {
 #commerce .adres{
     margin-left: 5%;
     margin-right:5%;
+}
+.comment-box {
+    width: 98%;
+    height: 40px;
 }

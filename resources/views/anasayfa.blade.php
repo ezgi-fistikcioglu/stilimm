@@ -59,11 +59,11 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="resim"><img
-                                                        src="{{url('/storage/kombin/'.$kombin->fotograf)}}" width="510" height="510" >
+                                                <div class="resim">
+                                                    <img src="{{url('/storage/kombin/'.$kombin->fotograf)}}" width="510" height="510" >
                                                     <br>
                                                     <div class="begen">
-                                                        <div onclick="javascript: begen( {{$kombin->id}} );" style="cursor: pointer; float: left; margin: 10px auto 10px 20px;">
+                                                        <div onclick="javascript: begen( {{$kombin->id}} );" style="cursor: pointer; margin: 10px auto 10px 20px;">
                                                             <i class="fa fa-thumbs-up" style="font-size:24px; cursor: pointer;"></i>
                                                             <label id="like-count-{{$kombin->id}}-text" style="cursor: pointer;">
                                                                 @if(auth()->check() && App\Models\Begen::where(['combin_id' => $kombin->id, 'kullanici_id' => auth()->user()->id])->count())
@@ -78,7 +78,15 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <div style="clear: both;"></div>
+                                                    <br>
+                                                    <div class="yorum"  id="comments-{{$kombin->id}}" >
+                                                        @foreach(App\Models\Yorum::where('combin_id', $kombin->id)->get() As $yorum)
+                                                            <strong>{{App\Models\Kullanici::where('id', $yorum->kullanici_id)->pluck('adsoyad')->first()}}:</strong> {{htmlspecialchars_decode($yorum->text)}} <br>
+                                                        @endforeach
+                                                    </div>
+                                                    <div>
+                                                        <textarea class="comment-box" id="comment-box-{{$kombin->id}}" combin-id="{{$kombin->id}}" cols="30" rows="10"></textarea>
+                                                    </div>
                                                 </div>
                                                 <br>
                                                 <br>
@@ -124,26 +132,53 @@
     </div>
     <script>
         @auth
-            function begen( combin_id ) {
-                $.post( "{{url('/ajax/begen')}}", {
-                    combin_id: combin_id,
-                    _token: '{{csrf_token()}}',
-                }).done(function( data ) {
-                    $("#like-count-"+combin_id).html(data.like_count);
-                    if(data.action=='like') {
-                        $("#like-count-"+combin_id+"-text").html("Beğenmekten Vazgeç");
-                    } else {
-                        $("#like-count-"+combin_id+"-text").html("Beğen");
-                    }
-                }).fail(function(error) {
-                    console.log(error);
-                });
-            }
+        function begen( combin_id ) {
+            $.post( "{{url('/ajax/begen')}}", {
+                combin_id: combin_id,
+                _token: '{{csrf_token()}}',
+            }).done(function( data ) {
+                $("#like-count-"+combin_id).html(data.like_count);
+                if(data.action=='like') {
+                    $("#like-count-"+combin_id+"-text").html("Beğenmekten Vazgeç");
+                } else {
+                    $("#like-count-"+combin_id+"-text").html("Beğen");
+                }
+            }).fail(function(error) {
+                console.log(error);
+            });
+        }
+        function yorum( combin_id, text) {
+            $.post( "{{url('/ajax/yorum')}}", {
+                combin_id: combin_id,
+                text: text,
+                _token: '{{csrf_token()}}',
+            }).done(function( data ) {
+                if(data.code == 200) {
+                    $("#comments-"+combin_id).append("<strong>"+data.kullanici.adsoyad+":</strong> "+data.text+" <br>");
+                }
+            }).fail(function(error) {
+                console.log(error);
+            });
+        }
         @endauth
         @guest
-            function begen( combin_id ) {
-                alert('Lütfen giriş yapın!');
-            }
+        function begen( combin_id ) {
+            alert('Lütfen giriş yapın!');
+        }
+        function yorum( combin_id ) {
+            alert('Lütfen giriş yapın!');
+        }
         @endguest
+        $(document).ready(function () {
+            $('.comment-box').keypress(function(e){
+                if(e.keyCode==13) {
+                    var combin_id = $(this).attr('combin-id');
+                    var comment = $(this).val();
+                    yorum( combin_id, comment);
+                    $(this).val(null);
+                    e.preventDefault();
+                }
+            });
+        });
     </script>
 @endsection

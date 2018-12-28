@@ -78,6 +78,7 @@ Route::get('/askibagis', 'BagisOdemeController@index')->name('bagis');
 
 Route::group(['prefix' => 'ajax'], function () {
     Route::post('/begen', 'AjaxController@begen');
+    Route::post('/yorum', 'AjaxController@yorum');
 });
 
 
