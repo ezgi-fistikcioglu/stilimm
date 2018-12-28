@@ -63,13 +63,22 @@
                                                         src="{{url('/storage/kombin/'.$kombin->fotograf)}}" width="510" height="510" >
                                                     <br>
                                                     <div class="begen">
-                                                        <a href="javascript: void(0);" onclick="javascript: begen( {{$kombin->id}} );";><i class="fa fa-thumbs-up"
-                                                                       style="font-size:24px"></i>
-                                                            Beğen<span
-                                                                class="badge badge-theme">1000</span></a>
-                                                        <a href="#"><i class="fa fa-comment" style="font-size:24px"></i>Yorum
-                                                            Yap</a>
+                                                        <div onclick="javascript: begen( {{$kombin->id}} );" style="cursor: pointer; float: left; margin: 10px auto 10px 20px;">
+                                                            <i class="fa fa-thumbs-up" style="font-size:24px; cursor: pointer;"></i>
+                                                            <label id="like-count-{{$kombin->id}}-text" style="cursor: pointer;">
+                                                                @if(auth()->check() && App\Models\Begen::where(['combin_id' => $kombin->id, 'kullanici_id' => auth()->user()->id])->count())
+                                                                    Beğenmekten Vazgeç
+                                                                @else
+                                                                    Beğen
+                                                                @endif
+                                                            </label>
+                                                            &nbsp;
+                                                            <span class="badge badge-theme" id="like-count-{{$kombin->id}}">
+                                                                {{App\Models\Begen::where('combin_id', $kombin->id)->count()}}
+                                                            </span>
+                                                        </div>
                                                     </div>
+                                                    <div style="clear: both;"></div>
                                                 </div>
                                                 <br>
                                                 <br>
@@ -114,13 +123,27 @@
         </div>
     </div>
     <script>
-        function begen( combin_id ) {
-            $.post( "{{url('/ajax/begen')}}", {
-                combin_id: combin_id,
-                _token: '{{csrf_token()}}',
-            }).done(function( data ) {
-                console.log(data);
-            });
-        }
+        @auth
+            function begen( combin_id ) {
+                $.post( "{{url('/ajax/begen')}}", {
+                    combin_id: combin_id,
+                    _token: '{{csrf_token()}}',
+                }).done(function( data ) {
+                    $("#like-count-"+combin_id).html(data.like_count);
+                    if(data.action=='like') {
+                        $("#like-count-"+combin_id+"-text").html("Beğenmekten Vazgeç");
+                    } else {
+                        $("#like-count-"+combin_id+"-text").html("Beğen");
+                    }
+                }).fail(function(error) {
+                    console.log(error);
+                });
+            }
+        @endauth
+        @guest
+            function begen( combin_id ) {
+                alert('Lütfen giriş yapın!');
+            }
+        @endguest
     </script>
 @endsection
