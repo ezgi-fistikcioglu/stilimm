@@ -8,6 +8,7 @@ use App\Models\Kullanici;
 use App\Models\Sepet;
 use App\Models\SepetUrun;
 use App\Models\Urun;
+use App\Models\Begen;
 use Illuminate\Http\Request;
 
 class AnasayfaController extends Controller
@@ -17,6 +18,10 @@ class AnasayfaController extends Controller
         $kategoriler = Kategori::whereRaw('ust_id is null')->get();
         $kombinler   = Kombin::orderBy('id', 'DESC')->get();
         $sepetim     = Sepet::whereRaw('kullanici_id is null')->get();
+        $ghebc       = Begen::ghebc();
+        $kazanan_kombin  = Kombin::where('id', $ghebc[0]->combin_id)->first();
+        $kazanan_kullanici     = Kullanici::where('id', $kazanan_kombin->kullanici_id)->get()->first();
+
 //        $surun       =SepetUrun::whereRaw('sepet_id is null')->get();
 
         foreach ($kombinler as $kombin_id => $kombin) {
@@ -33,6 +38,8 @@ class AnasayfaController extends Controller
             'kategoriler' => $kategoriler,
             'kombinler' => $kombinler,
             'sepetim'   => $sepetim,
+            'kazanan_kombin' => $kazanan_kombin,
+            'kazanan_kullanici' => $kazanan_kullanici,
         ]);
     }
 }

@@ -104,25 +104,16 @@
                         </a>
                         @endif
                         <div class="panel panel-default" id="sidebar-product">
-                            <div class="panel-heading">Kazanan Kişi</div>
-                            <a href="{{url('profil/5')}}">
-                                <div class="panel-body" style="width:200%;  margin-bottom: 15px;">
-                                    <table>
-                                        <tr>
-                                            <div align="left"><img src="/img/6.jpg" width="50" height="50">Gamze</div>
-                                            <br>
-                                            <div align="left">Gamze</div>
-                                            <td>
-                                                <div class="kazanan">
-                                                    <a href="#">
-                                                        <img src="/img/style.jpg" width="210" height="210" class="img-responsive">
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
+                            <div class="panel-heading">Bu Haftanın Kazananı</div>
+                                <div class="panel-body">
+                                    <a href="{{url('profil/'.$kazanan_kullanici->id)}}">
+                                      <div align="left"><img src="/img/6.jpg" width="50" height="50">{{$kazanan_kullanici->adsoyad}}</div>
+                                      <br>
+                                      <div class="kazanan">
+                                        <img src="{{url('/storage/kombin/'.$kazanan_kombin->fotograf)}}" width="210" height="210" class="img-responsive">
+                                      </div>
+                                    </a>
                                 </div>
-                            </a>
                         </div>
                     </div>
                 </div>
