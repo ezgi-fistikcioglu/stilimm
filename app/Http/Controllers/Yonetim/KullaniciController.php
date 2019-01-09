@@ -1,8 +1,8 @@
 <?php
-
 namespace App\Http\Controllers\Yonetim;
 
 use Illuminate\Http\Request;
+use App\Models\Kullanici;
 use App\Http\Controllers\Controller;
 use  Validator;
 use Auth;
@@ -17,11 +17,10 @@ class KullaniciController extends Controller
                 'sifre' => 'required',
             ]);
             $credentials=[
-                'email' => request()->get('email'),
-                'password' => request()->get('sifre'),
-                'yonetici_mi' => 1
-
-
+                'email'        => request()->get('email'),
+                'password'     => request()->get('sifre'),
+                'yonetici_mi'  => 1,
+                'aktif_mi'     => 1
             ];
             if (Auth::guard('yonetim')->attempt($credentials, request()->has('benihatirla')))
             {
@@ -41,5 +40,10 @@ class KullaniciController extends Controller
         request()->session()->flush();
         request()->session()->regenerate();
         return redirect()->route('yonetim.oturumac');
+    }
+    public function index()
+    {
+      $list = Kullanici::orderBy('created_at','desc')->paginate(8);
+      return view('yonetim.kullanici.index', compact('list'));
     }
 }
