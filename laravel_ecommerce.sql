@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 27 Ara 2018, 21:41:05
+-- Üretim Zamanı: 09 Oca 2019, 17:50:22
 -- Sunucu sürümü: 10.1.34-MariaDB
 -- PHP Sürümü: 7.2.7
 
@@ -70,10 +70,7 @@ CREATE TABLE `begen` (
 --
 
 INSERT INTO `begen` (`begen_id`, `combin_id`, `kullanici_id`, `created_at`) VALUES
-(1, 14, 5, '2018-12-26 16:03:43'),
-(2, 14, 5, '2018-12-26 16:05:49'),
-(3, 14, 5, '2018-12-26 16:06:15'),
-(4, 14, 5, '2018-12-26 16:06:18');
+(36, 9, 5, '2019-01-01 15:49:06');
 
 -- --------------------------------------------------------
 
@@ -197,6 +194,7 @@ CREATE TABLE `kullanici` (
   `dogum_tarihi` date NOT NULL DEFAULT '2018-12-14',
   `aktivasyon_anahtari` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `aktif_mi` tinyint(1) NOT NULL DEFAULT '0',
+  `yonetici_mi` tinyint(1) NOT NULL DEFAULT '0',
   `remember_token` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -207,9 +205,9 @@ CREATE TABLE `kullanici` (
 -- Tablo döküm verisi `kullanici`
 --
 
-INSERT INTO `kullanici` (`id`, `adsoyad`, `email`, `sifre`, `telefon_no`, `cinsiyet`, `dogum_tarihi`, `aktivasyon_anahtari`, `aktif_mi`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(5, 'Ezgi Fıstıkçıoğlu', 'fistikciogluezgi@gmail.com', '$2y$10$PMrDJA84gGPiaJH9fj8h5ObPubW.k6ePWDxDvRG.bj1eqEZEp5BcS', '5536437003', 'Female', '1995-04-12', 'e7N2Iwhc1zGj6O5XEmik1lrQA0oZBQt1NyT6vVEMavNsTqoIzaRqdhdIkO4h', 0, 'Ehy14Fc1QE9qe5lgBssjZNrVe9JY44SLbLxHmC9T29EKGe5yfvyh1hBzSzfu', '2018-12-14 06:16:58', '2018-12-14 06:16:58', NULL),
-(9, 'Sercan Kara', 'wercil94@gmail.com', '$2y$10$By.Bpz1K2/0rNBihIKStNOVJunytfKxRt6x6n8siC2BG1T58u94Zm', '5388324415', 'Male', '1994-02-06', 'rsiJ90fzsyb44d1JiBHVtxpDCvQBW9fgf57x40rE39NqKhkaHfJOLTeCmMhB', 0, 'PRSbOnNbd7b4bBGZreD7yuoQCQNSqKpr8KYQuWio2lMNNfzTHULHOSCSlSAN', '2018-12-24 07:29:36', '2018-12-24 07:29:36', NULL);
+INSERT INTO `kullanici` (`id`, `adsoyad`, `email`, `sifre`, `telefon_no`, `cinsiyet`, `dogum_tarihi`, `aktivasyon_anahtari`, `aktif_mi`, `yonetici_mi`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(5, 'Ezgi Fıstıkçıoğlu', 'fistikciogluezgi@gmail.com', '$2y$10$PMrDJA84gGPiaJH9fj8h5ObPubW.k6ePWDxDvRG.bj1eqEZEp5BcS', '5536437003', 'Female', '1995-04-12', 'e7N2Iwhc1zGj6O5XEmik1lrQA0oZBQt1NyT6vVEMavNsTqoIzaRqdhdIkO4h', 0, 1, 'jlMand1Tk0f5WMKW8vhsWDh6iedW7h5SLDf3juDvngpY8Y9XiLxY8ofa0Lia', '2018-12-14 06:16:58', '2019-01-09 13:45:59', NULL),
+(9, 'Sercan Kara', 'wercil94@gmail.com', '$2y$10$By.Bpz1K2/0rNBihIKStNOVJunytfKxRt6x6n8siC2BG1T58u94Zm', '5388324415', 'Male', '1994-02-06', 'rsiJ90fzsyb44d1JiBHVtxpDCvQBW9fgf57x40rE39NqKhkaHfJOLTeCmMhB', 0, 0, 'PRSbOnNbd7b4bBGZreD7yuoQCQNSqKpr8KYQuWio2lMNNfzTHULHOSCSlSAN', '2018-12-24 07:29:36', '2018-12-24 07:29:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -288,7 +286,8 @@ INSERT INTO `sepet` (`id`, `kullanici_id`, `created_at`, `updated_at`, `deleted_
 (7, 5, NULL, NULL, NULL),
 (8, 5, NULL, NULL, NULL),
 (9, 5, NULL, NULL, NULL),
-(10, 5, NULL, NULL, NULL);
+(10, 5, NULL, NULL, NULL),
+(11, 5, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -323,7 +322,10 @@ INSERT INTO `sepet_urun` (`id`, `sepet_id`, `urun_id`, `adet`, `fiyati`, `durum`
 (8, 7, 1, 1, '9.35', 'Beklemede', '2018-12-26 12:16:01', '2018-12-26 12:16:01', NULL),
 (9, 8, 1, 1, '9.35', 'Beklemede', '2018-12-26 12:16:57', '2018-12-26 12:16:57', NULL),
 (10, 9, 1, 1, '9.35', 'Beklemede', '2018-12-26 12:17:12', '2018-12-26 12:17:12', NULL),
-(11, 10, 1, 1, '9.35', 'Beklemede', '2018-12-27 16:39:15', '2018-12-27 16:39:15', NULL);
+(11, 10, 1, 2, '9.35', 'Beklemede', '2018-12-27 16:39:15', '2018-12-27 18:42:24', NULL),
+(12, 11, 1, 3, '9.35', 'Beklemede', '2019-01-09 10:22:19', '2019-01-09 12:14:26', '2019-01-09 12:14:26'),
+(13, 11, 5, 1, '2.42', 'Beklemede', '2019-01-09 11:21:17', '2019-01-09 12:14:26', '2019-01-09 12:14:26'),
+(14, 11, 2, 3, '10.74', 'Beklemede', '2019-01-09 11:21:24', '2019-01-09 12:14:26', '2019-01-09 12:14:26');
 
 -- --------------------------------------------------------
 
@@ -410,6 +412,32 @@ INSERT INTO `urun` (`id`, `slug`, `urun_adi`, `aciklama`, `fiyati`, `created_at`
 (29, 'beatae-consequatur-vel', 'Beatae consequatur vel.', 'Animi minus sapiente nesciunt omnis mollitia ullam sit qui expedita ducimus veniam quia aperiam natus voluptatem laborum.', '4.540', '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
 (30, 'sed-voluptate', 'Sed voluptate.', 'Eaque dolore modi facere omnis facere voluptatem velit corrupti officia eum voluptatem in deleniti saepe maiores tenetur sit ad.', '16.250', '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `yorum`
+--
+
+CREATE TABLE `yorum` (
+  `yorum_id` int(11) NOT NULL,
+  `combin_id` int(11) NOT NULL,
+  `kullanici_id` int(11) NOT NULL,
+  `text` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `yorum`
+--
+
+INSERT INTO `yorum` (`yorum_id`, `combin_id`, `kullanici_id`, `text`, `created_at`) VALUES
+(1, 14, 5, 'test', '2018-12-28 14:23:07'),
+(2, 14, 5, 'şjşlk', '2018-12-28 14:25:47'),
+(3, 14, 5, 'd', '2018-12-28 14:29:01'),
+(4, 14, 5, 'sfagfgsdfg', '2018-12-28 14:29:04'),
+(5, 14, 5, '&lt;knfk&lt; jfnk&lt;f', '2018-12-28 14:29:34'),
+(6, 14, 5, 'llK&gt;N&lt;xcz', '2018-12-28 14:31:28');
+
 --
 -- Dökümü yapılmış tablolar için indeksler
 --
@@ -495,6 +523,12 @@ ALTER TABLE `urun`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Tablo için indeksler `yorum`
+--
+ALTER TABLE `yorum`
+  ADD PRIMARY KEY (`yorum_id`);
+
+--
 -- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
 --
 
@@ -508,7 +542,7 @@ ALTER TABLE `bayilik`
 -- Tablo için AUTO_INCREMENT değeri `begen`
 --
 ALTER TABLE `begen`
-  MODIFY `begen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `begen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `kategori`
@@ -550,13 +584,13 @@ ALTER TABLE `migrations`
 -- Tablo için AUTO_INCREMENT değeri `sepet`
 --
 ALTER TABLE `sepet`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `sepet_urun`
 --
 ALTER TABLE `sepet_urun`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `siparis`
@@ -569,6 +603,12 @@ ALTER TABLE `siparis`
 --
 ALTER TABLE `urun`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `yorum`
+--
+ALTER TABLE `yorum`
+  MODIFY `yorum_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar
