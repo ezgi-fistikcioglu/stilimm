@@ -48,7 +48,12 @@
                                         src="http://via.placeholder.com/400x400?text=UrunResmi"></a>
                                 <p><a href="{{ route('urun',$urun->slug) }}">{{ $urun->urun_adi }}</a></p>
                                 <p class="price">{{ $urun->fiyati }}₺</p>
-                                <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                                <!-- <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p> -->
+                                <form action="{{route('sepet.ekle')}}" method="post">
+                                    {{csrf_field() }}
+                                    <input type="hidden" name="id" value="{{ $urun->id }}">
+                                    <input type="submit" class="btn btn-theme" value="Sepete Ekle">
+                                </form>
                             </div>
                         @endforeach
                     </div>
