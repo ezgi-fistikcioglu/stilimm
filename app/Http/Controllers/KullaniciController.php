@@ -15,16 +15,53 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Validator;
+use Validator, Auth;
 use Cart;
-
-
 
 class KullaniciController extends Controller
 {
     public function giris_form()
     {
         return view('kullanici.oturumac');
+    }
+
+    public function ProfilGuncelleme()
+    {
+      return view('kullanici.guncelle')->with([
+        'kullanici' => Auth::user(),
+      ]);
+    }
+
+    public function ProfilGuncelleme_post()
+    {
+      $validation = Validator::make(request()->except('_token'), [
+          'adsoyad' => 'required',
+          'email' => 'required|email',
+          //'sifre' => 'min:6|max:20|confirmed',
+          'phone' => 'required|numeric|digits_between:10,12',
+          'gender' => 'required|in:Male,Female',
+          'dogum_yil' => 'required',
+          'dogum_ay' => 'required|between:1,12',
+          'dogum_gun' => 'required|between:1,31',
+      ]);
+
+      if ($validation->fails()) {
+          return redirect('/kullanici/guncelle')->withErrors($validation)->withInput();
+      }
+
+      $kullanici = Kullanici::where('id', Auth::user()->id)->update([
+          'adsoyad' => request('adsoyad'),
+          'email' => request('email'),
+          //'sifre' => Hash::make(request('sifre')),
+          'telefon_no' => request('phone'),
+          'cinsiyet' => request('gender'),
+          'dogum_tarihi' => request('dogum_yil') . '-' . request('dogum_ay') . '-' . request('dogum_gun'),
+      ]);
+
+      return redirect('/kullanici/guncelle')->with([
+        'mesaj_tur' => 'success',
+        'mesaj' => 'Profil bilgileriniz başarıyla güncellendi!',
+      ]);
     }
 
     public function girisk()

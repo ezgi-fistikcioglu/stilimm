@@ -42,6 +42,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{route('siparisler')}}">Siparişlerim</a></li>
                             <li role="separator" class="divider"></li>
+                            <li><a href="{{route('kullanici.guncelle')}}">Profil Güncelle</a></li>
+                            <li role="separator" class="divider"></li>
                             <li><a href="{{url('/logout')}}">Çıkış</a></li>
                         </ul>
                     </li>
