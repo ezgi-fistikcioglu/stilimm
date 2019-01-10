@@ -40,8 +40,6 @@
                                     @endif
                                 </div>
                             </div>
-
-                            <!--
                             <div class="form-group">
                                 <label for="sifre" class="col-md-4 control-label">Şifre</label>
                                 <div class="col-md-6">
@@ -60,7 +58,6 @@
                                            name="sifre_confirmation">
                                 </div>
                             </div>
-                            -->
                             <div class="form-group">
                                 <label for="phone" class="col-md-4 control-label ">Telefon Numarası</label>
                                 <div class="col-md-6">

@@ -38,31 +38,37 @@ class KullaniciController extends Controller
       $validation = Validator::make(request()->except('_token'), [
           'adsoyad' => 'required',
           'email' => 'required|email',
-          //'sifre' => 'min:6|max:20|confirmed',
+          'sifre' => 'nullable|min:6|max:20|confirmed',
           'phone' => 'required|numeric|digits_between:10,12',
           'gender' => 'required|in:Male,Female',
           'dogum_yil' => 'required',
           'dogum_ay' => 'required|between:1,12',
           'dogum_gun' => 'required|between:1,31',
-          'avatar' => 'required|file|image',
+          'avatar' => 'nullable|file|image',
       ]);
 
       if ($validation->fails()) {
           return redirect('/kullanici/guncelle')->withErrors($validation)->withInput();
       }
 
-      $fotograf = $request->avatar->store('avatar', ['disk' => 'public']);
-      $fotograf = explode('/', $fotograf)[1];
-
-      $kullanici = Kullanici::where('id', Auth::user()->id)->update([
+      $user = [
           'adsoyad' => request('adsoyad'),
           'email' => request('email'),
-          //'sifre' => Hash::make(request('sifre')),
           'telefon_no' => request('phone'),
           'cinsiyet' => request('gender'),
-          'avatar' => $fotograf,
           'dogum_tarihi' => request('dogum_yil') . '-' . request('dogum_ay') . '-' . request('dogum_gun'),
-      ]);
+      ];
+
+      if($request->filled('sifre')) {
+        $user['sifre'] = Hash::make(request('sifre'));
+      }
+
+      if($request->filled('avatar')) {
+        $fotograf = $request->avatar->store('avatar', ['disk' => 'public']);
+        $user['avatar'] = explode('/', $fotograf)[1];
+      }
+
+      $kullanici = Kullanici::where('id', Auth::user()->id)->update($user);
 
       return redirect('/kullanici/guncelle')->with([
         'mesaj_tur' => 'success',

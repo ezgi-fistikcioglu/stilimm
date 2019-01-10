@@ -27,7 +27,18 @@
               <div class="panel panel-default">
                   <div class="panel-heading">Bilgileriniz</div>
                   <div class="list-group categories">
-                  
+                  <div class="accNav">
+                     <ul>
+                        <li class="active">
+                           <a href="{{url('siparisler')}}">Siparişlerim</a>
+                       </li>
+                       <li> <a href="{{url('/kullanici/guncelle/')}}">Üyelik Bilgilerim</a>
+                       </li> <li> <a href="{{url('/kullanici/adres/')}}">Adreslerim</a> </li>
+                       <li> <a href="{{url('/kullanici/guncelle/')}}">Şifre Değiştir</a>
+                       </li> <li> <a href="{{url('/kullanici/iptal')}}">Üyelik İptali</a>
+                       </li>
+                       </ul>
+                      </div>
                   </div>
               </div>
             </div>

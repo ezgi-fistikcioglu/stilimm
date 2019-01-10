@@ -10,7 +10,7 @@
                     <div class="fieldsetContainer myAccountOption">
                         <div class="fieldset"><br>
                             <center>Üyeliğimi İptal Et butonuna bastığınızda hesabınız silinecektir.</center>
-                            <form id="withdrawMyMembershipForm" action="https://www.n11.com/uyelik/onay" method="post">
+                            <form id="withdrawMyMembershipForm" action="#" method="post">
                                 <input type="hidden" name="token" value="nqVAjsPKgPDcgMUaSyJmiBTdLunPKw">
                             </form>
                             <br>
