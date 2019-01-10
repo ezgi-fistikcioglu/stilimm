@@ -8,7 +8,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Kaydol</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST"
+                        <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data"
                               action="{{ route('kullanici.guncelle') }}">
                             {{ csrf_field() }}
                             <meta charset="utf-8">
@@ -40,6 +40,7 @@
                                     @endif
                                 </div>
                             </div>
+
                             <!--
                             <div class="form-group">
                                 <label for="sifre" class="col-md-4 control-label">Şifre</label>
@@ -135,6 +136,13 @@
                                     <div class="errorText"></div>
                                 </div>
                             </div>
+                            <div class="form-group ">
+                                <label for="fotograf" class="col-md-4 control-label">Fotoğraf Ekle</label>
+                                <div class="col-md-6">
+                                    <input name="avatar" id="fotograf" type="file" class="form-control"> <BR>
+                                    <img id="onizleme" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width: 150px; max-height: 150px;" />
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
@@ -148,4 +156,21 @@
             </div>
         </div>
     </div>
+    <script>
+        $( document ).ready(function() {
+            $("#fotograf").change(function() {
+                readURL(this);
+            });
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#onizleme').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
 @endsection

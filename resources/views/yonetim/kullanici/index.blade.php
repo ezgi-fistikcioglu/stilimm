@@ -21,7 +21,7 @@
             <th> Yönetici Mi</th>
             <th> Kayıt Tarihi</th>
             <th> İşlem</th>
-            
+
           </tr>
         </thead>
         <tbody>

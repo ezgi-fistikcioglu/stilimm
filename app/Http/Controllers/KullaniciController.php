@@ -30,9 +30,10 @@ class KullaniciController extends Controller
       return view('kullanici.guncelle')->with([
         'kullanici' => Auth::user(),
       ]);
+      return view('kullanici.guncelle');
     }
 
-    public function ProfilGuncelleme_post()
+    public function ProfilGuncelleme_post(Request $request)
     {
       $validation = Validator::make(request()->except('_token'), [
           'adsoyad' => 'required',
@@ -43,11 +44,15 @@ class KullaniciController extends Controller
           'dogum_yil' => 'required',
           'dogum_ay' => 'required|between:1,12',
           'dogum_gun' => 'required|between:1,31',
+          'avatar' => 'required|file|image',
       ]);
 
       if ($validation->fails()) {
           return redirect('/kullanici/guncelle')->withErrors($validation)->withInput();
       }
+
+      $fotograf = $request->avatar->store('avatar', ['disk' => 'public']);
+      $fotograf = explode('/', $fotograf)[1];
 
       $kullanici = Kullanici::where('id', Auth::user()->id)->update([
           'adsoyad' => request('adsoyad'),
@@ -55,6 +60,7 @@ class KullaniciController extends Controller
           //'sifre' => Hash::make(request('sifre')),
           'telefon_no' => request('phone'),
           'cinsiyet' => request('gender'),
+          'avatar' => $fotograf,
           'dogum_tarihi' => request('dogum_yil') . '-' . request('dogum_ay') . '-' . request('dogum_gun'),
       ]);
 
