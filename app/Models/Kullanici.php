@@ -13,7 +13,7 @@ class Kullanici extends Authenticatable
 
     protected $table = "kullanici";
 
-    protected $fillable = ['adsoyad', 'email', 'sifre', 'telefon_no', 'cinsiyet', 'dogum_tarihi', 'aktivasyon_anahtari', 'aktif_mi'];
+    protected $fillable = ['adsoyad', 'email', 'sifre', 'telefon_no', 'cinsiyet', 'dogum_tarihi', 'aktivasyon_anahtari', 'aktif_mi','yonetici_mi'];
     //protected $guarded =[];
     protected $hidden = ['sifre', 'aktivasyon_anahtari', 'remember_token'];
 
@@ -27,6 +27,7 @@ class Kullanici extends Authenticatable
     public function detay()
     {
         //bu kullanıcıya ait bir tane kayıt olduğunu ve bunun da K.detay tablosundan çekileceğini söylemiş oluyoruz
-        return $this->hasOne('App\Models\KullaniciDetay');
+        return $this->hasOne('App\Models\KullaniciDetay')->withDefault();
+        // withDefault() varsayılan olarak modelle doldurası için
     }
 }

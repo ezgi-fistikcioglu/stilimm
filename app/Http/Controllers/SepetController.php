@@ -31,6 +31,7 @@ class SepetController extends Controller
                 session()->put('aktif_sepet_id', $aktif_sepet_id);
             }
 
+        
             sepet_urun::updateOrCreate(
                 ['sepet_id' => $aktif_sepet_id, 'urun_id' => $urun->id],
                 //eğer sepet_id ve urun_id varsa bunu adet, fiyati ve durum olarak güncelliyor eğer yokse tüm alanlarla beraber yeni bir kayıt oluşturuyor
