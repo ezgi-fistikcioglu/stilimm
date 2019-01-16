@@ -46,7 +46,20 @@ class KullaniciController extends Controller
     }
     public function index()
     {
-      $list = Kullanici::orderBy('created_at','desc')->paginate(8);
+        if (!empty(request('aranan')))
+        {
+            request()->flash('aranan');
+            $aranan = request('aranan');
+            $list = Kullanici::where('adsoyad','like',"%$aranan%")
+                ->orWhere('email', 'like', "%$aranan%" )
+                ->orderByDesc('created_at')
+                ->paginate(8)
+                ->appends('aranan', $aranan);
+        }
+        else
+            {
+                $list = Kullanici::orderBy('created_at','desc')->paginate(8);
+            }
       return view('yonetim.kullanici.index', compact('list'));
     }
     public function form($id = 0) //id değeri gönderilmezse default olarak yani 0 alacaktır.
@@ -103,4 +116,12 @@ class KullaniciController extends Controller
       ->with('mesaj',($id > 0 ? 'Güncellendi' : 'Kaydedildi'))
       ->with('mesaj_tur', 'success');
     }
+     public function sil($id)
+     {
+        Kullanici::destroy($id);
+        return redirect()
+            ->route('yonetim.kullanici')
+            ->with('mesaj','kayıt Silindi')
+            ->with('mesaj_tur', 'success');
+     }
 }

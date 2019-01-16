@@ -14,7 +14,7 @@ Route::group(['prefix' => 'yonetim', 'namespace' => 'Yonetim'], function () {
             Route::get('/yeni', 'KullaniciController@form')->name('yonetim.kullanici.yeni');
             Route::get('/duzenle/{id}', 'KullaniciController@form')->name('yonetim.kullanici.duzenle');
             Route::post('/kaydet/{id?}', 'KullaniciController@kaydet')->name('yonetim.kullanici.kaydet');
-            Route::post('/sil/{id}', 'KullaniciController@sil')->name('yonetim.kullanici.sil');
+            Route::get('/sil/{id}', 'KullaniciController@sil')->name('yonetim.kullanici.sil');
         });
     });
 });

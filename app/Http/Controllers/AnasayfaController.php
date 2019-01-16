@@ -19,8 +19,13 @@ class AnasayfaController extends Controller
         $kombinler   = Kombin::orderBy('id', 'DESC')->get();
         $sepetim     = Sepet::whereRaw('kullanici_id is null')->get();
         $ghebc       = Begen::ghebc();
-        $kazanan_kombin  = Kombin::where('id', $ghebc[0]->combin_id)->first();
-        $kazanan_kullanici     = Kullanici::where('id', $kazanan_kombin->kullanici_id)->get()->first();
+        if(count($ghebc)!=0) {
+            $kazanan_kombin  = Kombin::where('id', $ghebc[0]->combin_id)->first();
+            $kazanan_kullanici     = Kullanici::where('id', $kazanan_kombin->kullanici_id)->get()->first();
+        } else {
+            $kazanan_kombin  = [];
+            $kazanan_kullanici     = [];
+        }
 
 //        $surun       =SepetUrun::whereRaw('sepet_id is null')->get();
 

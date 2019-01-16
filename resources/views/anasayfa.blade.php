@@ -104,7 +104,12 @@
                         <a href="{{url('kullanici/kombin')}}">
                             <button type="button" style="width:100%; margin-bottom: 15px;" class="btn btn-primary">Kombin Ekle</button>
                         </a>
+                        @else
+                        <a href="{{url('/kullanici/oturumac')}}">
+                            <button type="button" style="width:100%; margin-bottom: 15px;" class="btn btn-primary">Kombin Ekle</button>
+                        </a>
                         @endif
+                        @if(!empty($kazanan_kullanici))
                         <div class="panel panel-default" id="sidebar-product">
                             <div class="panel-heading">Bu Haftanın Kazananı</div>
                                 <div class="panel-body">
@@ -117,6 +122,7 @@
                                     </a>
                                 </div>
                         </div>
+                        @endif
                     </div>
                 </div>
 
