@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 10 Oca 2019, 18:55:25
+-- Üretim Zamanı: 16 Oca 2019, 12:23:35
 -- Sunucu sürümü: 10.1.34-MariaDB
 -- PHP Sürümü: 7.2.7
 
@@ -50,7 +50,8 @@ INSERT INTO `bayilik` (`id`, `magazaadi`, `email`, `sifre`, `telefon_no`, `uyeli
 (1, 'deneme', 'deneme@gmail.com', '$2y$10$ayVPG5EBiRc8/I3reCkO1uXPFX.hH92BuDb6hI0tGGvRdu1aGigSa', '5536437003', '1', 'gCvxJnYA2Diy9J1bLVbtCKBbxPW5Om51uR1xMWSoycyHBF5apwJ1RBud0EeJ', 0, '2018-12-14 19:08:28', '2018-12-14 19:08:28', NULL),
 (3, 'deneme', 'cccc@gmail.com', '$2y$10$iG6DTrLBnNY3cDUQOuPxLed9dWQu.HOMuHfAHun23BFhqyBBk3p1.', '5538437003', '2', '1qOhabt36mvRMb72TIj4uuRKZx8UDPhjhIMp7jCGxaKmcGQokBiglGymKaHL', 0, '2018-12-14 19:10:55', '2018-12-14 19:10:55', NULL),
 (6, 'sevecen', 'sevecen@gmail.com', '$2y$10$BeFX.lNBhD30jDF4mErZqOFQhKCqCxbHopMHzhNpb4DXpv9BEqzqG', '5536425003', 'Sirket', 'h845GV0dSiOl0Wsw6FXZX0khqWwMjkY9rQxiD4YTK1PWNDwx7lVMTSUEl5qX', 0, '2018-12-14 19:32:15', '2018-12-14 19:32:15', NULL),
-(8, 'b', 'xd@gmail.com', '$2y$10$qIoxgiryqFuderqOOrdeUufcKGmE0ZVld93UeVHK2uDHHifdWPqdq', '5536437003', 'Sirket', 'Z8AuWCRyDHy8BmCT1IfrPS4SI0LaFQJPaI5TLmwvTCFV6Rboym0qOU0fMNw4', 0, '2018-12-14 20:02:22', '2018-12-14 20:02:22', NULL);
+(8, 'b', 'xd@gmail.com', '$2y$10$qIoxgiryqFuderqOOrdeUufcKGmE0ZVld93UeVHK2uDHHifdWPqdq', '5536437003', 'Sirket', 'Z8AuWCRyDHy8BmCT1IfrPS4SI0LaFQJPaI5TLmwvTCFV6Rboym0qOU0fMNw4', 0, '2018-12-14 20:02:22', '2018-12-14 20:02:22', NULL),
+(9, 'sercan', 'wercil@gmail.com', '$2y$10$GZAju/8tWcLr9gKPKIxxdO41.303EqaGCmBbdTWoUROC87VN3uBiS', '5536437008', 'Sirket', 'FqhAr3ab4UsZ5b7MQcjdN0utGLFBfoyIwtA0DWOKgQSr3kQ7yQov7b9oyahS', 0, '2019-01-11 07:17:36', '2019-01-11 07:17:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -207,7 +208,7 @@ CREATE TABLE `kullanici` (
 --
 
 INSERT INTO `kullanici` (`id`, `adsoyad`, `email`, `sifre`, `telefon_no`, `cinsiyet`, `dogum_tarihi`, `aktivasyon_anahtari`, `aktif_mi`, `yonetici_mi`, `remember_token`, `avatar`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(5, 'Ezgi Fıstıkçıoğlu', 'fistikciogluezgi@gmail.com', '$2y$10$miaS4tmFeJzBrArbVmZ4puXCSP4/Hj5grjlEZBGmsQYwzPZi6XZni', '5536437003', 'Female', '1995-04-12', 'e7N2Iwhc1zGj6O5XEmik1lrQA0oZBQt1NyT6vVEMavNsTqoIzaRqdhdIkO4h', 1, 1, 'GG1aXa3uAps8U6bhDutOfZwRUDet05A6rdSOGH70P36IDFZt43FhNB9UmRMo', 'MnxCCpovoi08OIrR9dZ7W3J1fSqwtkRV7ImsTUZr.jpeg', '2018-12-14 06:16:58', '2019-01-10 14:42:09', NULL),
+(5, 'Ezgi Fıstıkçıoğlu', 'fistikciogluezgi@gmail.com', '$2y$10$KA9xsG6e.CR2EDT2GcKn3.b6jbtaX.An45eCF/4x9vxFZJZ.d96Hu', '5536437003', 'Female', '1995-04-12', 'e7N2Iwhc1zGj6O5XEmik1lrQA0oZBQt1NyT6vVEMavNsTqoIzaRqdhdIkO4h', 1, 1, 'GG1aXa3uAps8U6bhDutOfZwRUDet05A6rdSOGH70P36IDFZt43FhNB9UmRMo', 'MnxCCpovoi08OIrR9dZ7W3J1fSqwtkRV7ImsTUZr.jpeg', '2018-12-14 06:16:58', '2019-01-11 07:03:52', NULL),
 (9, 'Sercan Kara', 'wercil94@gmail.com', '$2y$10$By.Bpz1K2/0rNBihIKStNOVJunytfKxRt6x6n8siC2BG1T58u94Zm', '5388324415', 'Male', '1994-02-06', 'rsiJ90fzsyb44d1JiBHVtxpDCvQBW9fgf57x40rE39NqKhkaHfJOLTeCmMhB', 0, 0, 'PRSbOnNbd7b4bBGZreD7yuoQCQNSqKpr8KYQuWio2lMNNfzTHULHOSCSlSAN', NULL, '2018-12-24 07:29:36', '2018-12-24 07:29:36', NULL),
 (10, 'deneme', 'deneme@gmail.com', '$2y$10$4Xf8d7uiLJR8fmTnMOdgjuCreytTlGGWaJJPUTwZEkuqwBACAmcrq', '5589632547', 'Male', '1982-01-19', 'tsECT6OXjbpAoPPWeDtOmLMs0K1Ep6FSzLSX0z7nCpAtHJVKDKvYyM54hRg3', 0, 0, '7ngz7IJ7Dmv1WkyeIczLSxYL41Yf7pcyvIovLoOewYKawmRMSl6mwePgnSq3', NULL, '2019-01-10 13:48:28', '2019-01-10 13:48:28', NULL);
 
@@ -232,7 +233,7 @@ CREATE TABLE `kullanici_detay` (
 --
 
 INSERT INTO `kullanici_detay` (`id`, `kullanici_id`, `adres`, `telefon`, `ceptelefonu`, `updated_at`, `created_at`) VALUES
-(1, 5, 'Elazığ', '3125556677', '5536437003', '2018-12-24 10:28:47', '2018-12-24 10:29:33'),
+(1, 5, 'Nail bey mahallesi general Abdullah Alpdoğan cad. Bağkur sokak gizem apt. No:26/9 kat:3', '05536437003', '5536437003', '2019-01-10 20:04:55', '2018-12-24 10:29:33'),
 (2, 9, NULL, NULL, NULL, '2018-12-24 07:29:36', '2018-12-24 07:29:36'),
 (3, 10, NULL, NULL, NULL, '2019-01-10 13:48:28', '2019-01-10 13:48:28');
 
@@ -332,7 +333,8 @@ INSERT INTO `sepet_urun` (`id`, `sepet_id`, `urun_id`, `adet`, `fiyati`, `durum`
 (14, 11, 2, 3, '10.74', 'Beklemede', '2019-01-09 11:21:24', '2019-01-09 12:14:26', '2019-01-09 12:14:26'),
 (15, 12, 1, 1, '9.35', 'Beklemede', '2019-01-10 13:44:47', '2019-01-10 13:44:47', NULL),
 (16, 5, 1, 1, '9.35', 'Beklemede', '2019-01-10 14:31:09', '2019-01-10 14:31:09', NULL),
-(17, 5, 4, 1, '5.13', 'Beklemede', '2019-01-10 14:50:07', '2019-01-10 14:50:07', NULL);
+(17, 5, 4, 1, '5.13', 'Beklemede', '2019-01-10 14:50:07', '2019-01-10 14:50:07', NULL),
+(18, 6, 1, 1, '9.35', 'Beklemede', '2019-01-11 11:02:50', '2019-01-11 11:02:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -545,7 +547,7 @@ ALTER TABLE `yorum`
 -- Tablo için AUTO_INCREMENT değeri `bayilik`
 --
 ALTER TABLE `bayilik`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `begen`
@@ -599,13 +601,13 @@ ALTER TABLE `sepet`
 -- Tablo için AUTO_INCREMENT değeri `sepet_urun`
 --
 ALTER TABLE `sepet_urun`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `siparis`
 --
 ALTER TABLE `siparis`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `urun`
