@@ -26,10 +26,10 @@
             <thead class="thead-dark">
             <tr>
                 <th> ID</th>
-                <th> ust_id</th>
-                <th> kategori_adi</th>
-                <th> slug</th>
-                <th> created_at</th>
+                <th> Üst Kategori</th>
+                <th> Kategori Adı</th>
+                <th> Slug</th>
+                <th> Kayıt Tarihi</th>
                 <th> İşlem</th>
 
             </tr>
@@ -38,7 +38,7 @@
             @foreach ($kategoriler as $entry)
                 <tr>
                     <td>{{$entry->id}}</td>
-                    <td>{{$entry->ust_id}}</td>
+                    <td>{{$entry->ust_kategori->kategori_adi}}</td>
                     <td>{{$entry->kategori_adi}}</td>
                     <td>{{$entry->slug}}</td>
                     <td>{{$entry->created_at}}</td>
@@ -58,6 +58,6 @@
             @endforeach
             </tbody>
         </table>
-
+        {{ $kategoriler->links() }}
     </div>
 @endsection
