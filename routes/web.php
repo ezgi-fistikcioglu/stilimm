@@ -23,8 +23,13 @@ Route::group(['prefix' => 'yonetim', 'namespace' => 'Yonetim'], function () {
             Route::post('/kaydet/{id?}', 'KategoriController@kaydet')->name('yonetim.kategori.kaydet');
             Route::get('/sil/{id}', 'KategoriController@sil')->name('yonetim.kategori.sil');
 
-
-
+        });
+        Route::group(['prefix' => 'urunler'], function (){
+            Route::match(['get','post'],'/' ,'UrunController@index')->name('yonetim.urunler');
+            Route::get('/yeni','UrunController@form')->name('yonetim.urunler.yeni');
+            Route::get('/duzenle/{id}','UrunController@form')->name('yonetim.urunler.duzenle');
+            Route::get('/kaydet/{id?}','UrunController@kaydet')->name('yonetim.urunler.kaydet');
+            Route::get('/sil/{id}','UrunController@sil')->name('yonetim.urunler.sil');
 
 
 
