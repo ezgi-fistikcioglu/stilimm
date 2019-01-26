@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 16 Oca 2019, 12:23:35
+-- Üretim Zamanı: 26 Oca 2019, 19:58:11
 -- Sunucu sürümü: 10.1.34-MariaDB
 -- PHP Sürümü: 7.2.7
 
@@ -71,7 +71,29 @@ CREATE TABLE `begen` (
 --
 
 INSERT INTO `begen` (`begen_id`, `combin_id`, `kullanici_id`, `created_at`) VALUES
-(36, 9, 5, '2019-01-01 15:49:06');
+(36, 9, 5, '2019-01-16 21:00:00'),
+(37, 14, 5, '2019-01-26 09:48:43');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `iletisim`
+--
+
+CREATE TABLE `iletisim` (
+  `id` int(11) NOT NULL,
+  `adsoyad` varchar(255) NOT NULL,
+  `telefon` bigint(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `mesaj` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `iletisim`
+--
+
+INSERT INTO `iletisim` (`id`, `adsoyad`, `telefon`, `email`, `mesaj`) VALUES
+(1, 'Ezgi Fıstıkçıoğlu', 5536437003, 'ezgi@gmail.com', 'sdfvbn');
 
 -- --------------------------------------------------------
 
@@ -94,7 +116,7 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id`, `ust_id`, `kategori_adi`, `slug`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, NULL, 'Kozmetik', 'kozmetik', NULL, NULL, NULL),
+(1, NULL, 'Kozmetik', 'kozmetik', NULL, '2019-01-17 15:08:50', NULL),
 (2, 1, 'Far Paleti', 'far-paleti', NULL, NULL, NULL),
 (3, 1, 'Göz Kalemi', 'goz-kalemi', NULL, NULL, NULL),
 (4, 1, 'Ruj', 'ruj', NULL, NULL, NULL),
@@ -121,7 +143,9 @@ INSERT INTO `kategori` (`id`, `ust_id`, `kategori_adi`, `slug`, `created_at`, `u
 (25, 23, 'Kadın Giyim', 'kadin-giyim', NULL, NULL, NULL),
 (26, 23, 'Bebek Giyim', 'bebek-giyim', NULL, NULL, NULL),
 (27, 23, 'Bebek Arabası', 'bebek-arabasi', NULL, NULL, NULL),
-(28, 23, 'Bebek Oyuncakları', 'bebek-oyuncaklari', NULL, NULL, NULL);
+(28, 23, 'Bebek Oyuncakları', 'bebek-oyuncaklari', NULL, NULL, NULL),
+(29, NULL, 'Temizlik Ürünleri', 'temizlik-urunleri', NULL, '2019-01-18 10:13:44', NULL),
+(30, 29, 'Ev Temizliği', 'ev-temizligi', NULL, '2019-01-18 10:24:05', '2019-01-18 10:24:05');
 
 -- --------------------------------------------------------
 
@@ -144,7 +168,10 @@ INSERT INTO `kategori_urun` (`id`, `kategori_id`, `urun_id`) VALUES
 (2, 1, 2),
 (3, 2, 5),
 (4, 3, 4),
-(5, 4, 30);
+(5, 4, 30),
+(6, 2, 2),
+(7, 5, 3),
+(8, 6, 10);
 
 -- --------------------------------------------------------
 
@@ -208,9 +235,9 @@ CREATE TABLE `kullanici` (
 --
 
 INSERT INTO `kullanici` (`id`, `adsoyad`, `email`, `sifre`, `telefon_no`, `cinsiyet`, `dogum_tarihi`, `aktivasyon_anahtari`, `aktif_mi`, `yonetici_mi`, `remember_token`, `avatar`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(5, 'Ezgi Fıstıkçıoğlu', 'fistikciogluezgi@gmail.com', '$2y$10$KA9xsG6e.CR2EDT2GcKn3.b6jbtaX.An45eCF/4x9vxFZJZ.d96Hu', '5536437003', 'Female', '1995-04-12', 'e7N2Iwhc1zGj6O5XEmik1lrQA0oZBQt1NyT6vVEMavNsTqoIzaRqdhdIkO4h', 1, 1, 'GG1aXa3uAps8U6bhDutOfZwRUDet05A6rdSOGH70P36IDFZt43FhNB9UmRMo', 'MnxCCpovoi08OIrR9dZ7W3J1fSqwtkRV7ImsTUZr.jpeg', '2018-12-14 06:16:58', '2019-01-11 07:03:52', NULL),
+(5, 'Ezgi Fıstıkçıoğlu', 'fistikciogluezgi@gmail.com', '$2y$10$KA9xsG6e.CR2EDT2GcKn3.b6jbtaX.An45eCF/4x9vxFZJZ.d96Hu', '5536437003', 'Female', '1995-04-12', 'e7N2Iwhc1zGj6O5XEmik1lrQA0oZBQt1NyT6vVEMavNsTqoIzaRqdhdIkO4h', 1, 1, 'ULMJ8eg5HG078ZeMDihhngOhZyYCjvpfnpoqkbptsGP74zovDKMwEmbDWHKf', 'MnxCCpovoi08OIrR9dZ7W3J1fSqwtkRV7ImsTUZr.jpeg', '2018-12-14 06:16:58', '2019-01-11 07:03:52', NULL),
 (9, 'Sercan Kara', 'wercil94@gmail.com', '$2y$10$By.Bpz1K2/0rNBihIKStNOVJunytfKxRt6x6n8siC2BG1T58u94Zm', '5388324415', 'Male', '1994-02-06', 'rsiJ90fzsyb44d1JiBHVtxpDCvQBW9fgf57x40rE39NqKhkaHfJOLTeCmMhB', 0, 0, 'PRSbOnNbd7b4bBGZreD7yuoQCQNSqKpr8KYQuWio2lMNNfzTHULHOSCSlSAN', NULL, '2018-12-24 07:29:36', '2018-12-24 07:29:36', NULL),
-(10, 'deneme', 'deneme@gmail.com', '$2y$10$4Xf8d7uiLJR8fmTnMOdgjuCreytTlGGWaJJPUTwZEkuqwBACAmcrq', '5589632547', 'Male', '1982-01-19', 'tsECT6OXjbpAoPPWeDtOmLMs0K1Ep6FSzLSX0z7nCpAtHJVKDKvYyM54hRg3', 0, 0, '7ngz7IJ7Dmv1WkyeIczLSxYL41Yf7pcyvIovLoOewYKawmRMSl6mwePgnSq3', NULL, '2019-01-10 13:48:28', '2019-01-10 13:48:28', NULL);
+(10, 'deneme', 'deneme@gmail.com', '$2y$10$4Xf8d7uiLJR8fmTnMOdgjuCreytTlGGWaJJPUTwZEkuqwBACAmcrq', '5589632547', 'Male', '1982-01-19', 'tsECT6OXjbpAoPPWeDtOmLMs0K1Ep6FSzLSX0z7nCpAtHJVKDKvYyM54hRg3', 0, 0, '7ngz7IJ7Dmv1WkyeIczLSxYL41Yf7pcyvIovLoOewYKawmRMSl6mwePgnSq3', NULL, '2019-01-10 13:48:28', '2019-01-16 11:09:15', '2019-01-16 11:09:15');
 
 -- --------------------------------------------------------
 
@@ -292,7 +319,17 @@ INSERT INTO `sepet` (`id`, `kullanici_id`, `created_at`, `updated_at`, `deleted_
 (9, 5, NULL, NULL, NULL),
 (10, 5, NULL, NULL, NULL),
 (11, 5, NULL, NULL, NULL),
-(12, 5, NULL, NULL, NULL);
+(12, 5, NULL, NULL, NULL),
+(13, 5, NULL, NULL, NULL),
+(14, 5, NULL, NULL, NULL),
+(15, 5, NULL, NULL, NULL),
+(16, 5, NULL, NULL, NULL),
+(17, 5, NULL, NULL, NULL),
+(18, 5, NULL, NULL, NULL),
+(19, 5, NULL, NULL, NULL),
+(20, 5, NULL, NULL, NULL),
+(21, 5, NULL, NULL, NULL),
+(22, 5, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -334,7 +371,18 @@ INSERT INTO `sepet_urun` (`id`, `sepet_id`, `urun_id`, `adet`, `fiyati`, `durum`
 (15, 12, 1, 1, '9.35', 'Beklemede', '2019-01-10 13:44:47', '2019-01-10 13:44:47', NULL),
 (16, 5, 1, 1, '9.35', 'Beklemede', '2019-01-10 14:31:09', '2019-01-10 14:31:09', NULL),
 (17, 5, 4, 1, '5.13', 'Beklemede', '2019-01-10 14:50:07', '2019-01-10 14:50:07', NULL),
-(18, 6, 1, 1, '9.35', 'Beklemede', '2019-01-11 11:02:50', '2019-01-11 11:02:50', NULL);
+(18, 6, 1, 1, '9.35', 'Beklemede', '2019-01-11 11:02:50', '2019-01-11 11:02:50', NULL),
+(19, 13, 1, 1, '9.35', 'Beklemede', '2019-01-26 11:17:48', '2019-01-26 11:17:48', NULL),
+(20, 14, 2, 1, '10.74', 'Beklemede', '2019-01-26 11:44:34', '2019-01-26 11:44:34', NULL),
+(21, 15, 1, 1, '9.35', 'Beklemede', '2019-01-26 11:46:15', '2019-01-26 11:46:15', NULL),
+(22, 16, 1, 1, '9.35', 'Beklemede', '2019-01-26 11:47:32', '2019-01-26 11:47:32', NULL),
+(23, 17, 1, 1, '9.35', 'Beklemede', '2019-01-26 11:48:56', '2019-01-26 11:48:56', NULL),
+(24, 18, 1, 1, '9.35', 'Beklemede', '2019-01-26 11:49:26', '2019-01-26 11:49:26', NULL),
+(25, 19, 1, 3, '9.35', 'Beklemede', '2019-01-26 11:50:02', '2019-01-26 11:50:49', NULL),
+(26, 20, 1, 1, '9.35', 'Beklemede', '2019-01-26 11:51:08', '2019-01-26 11:51:08', NULL),
+(27, 21, 1, 5, '9.35', 'Beklemede', '2019-01-26 11:51:56', '2019-01-26 11:52:40', NULL),
+(28, 22, 1, 2, '9.35', 'Beklemede', '2019-01-26 15:54:21', '2019-01-26 15:56:43', NULL),
+(29, 22, 2, 1, '10.74', 'Beklemede', '2019-01-26 15:55:08', '2019-01-26 15:55:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -363,11 +411,7 @@ CREATE TABLE `siparis` (
 --
 
 INSERT INTO `siparis` (`id`, `sepet_id`, `siparis_tutari`, `durum`, `adsoyad`, `adres`, `telefon`, `ceptelefonu`, `banka`, `taksit_sayisi`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 4, '14.4800', 'Siparişiniz alındı', 'Ezgi Fıstıkçıoğlu', 'Elazığ', '(312) 555-66-77', '5536437003', 'Garanti', 1, '2018-12-26 12:08:10', '2018-12-26 12:08:10', NULL),
-(2, 7, '9.3500', 'Siparişiniz alındı', 'Ezgi Fıstıkçıoğlu', 'Elazığ', '(312) 555-66-77', '5536437003', 'Garanti', 1, '2018-12-26 12:16:44', '2018-12-26 12:16:44', NULL),
-(3, 8, '9.3500', 'Siparişiniz alındı', 'Ezgi Fıstıkçıoğlu', 'Elazığ', '(312) 555-66-77', '5536437003', 'Garanti', 1, '2018-12-26 12:17:01', '2018-12-26 12:17:01', NULL),
-(4, 9, '9.3500', 'Siparişiniz alındı', 'Ezgi Fıstıkçıoğlu', 'Elazığ', '(312) 555-66-77', '5536437003', 'Garanti', 1, '2018-12-26 12:25:08', '2018-12-26 12:25:08', NULL),
-(5, 5, '14.4800', 'Siparişiniz alındı', 'Ezgi Fıstıkçıoğlu', 'Elazığ', '(312) 555-66-77', '5536437003', 'Garanti', 1, '2019-01-10 14:51:41', '2019-01-10 14:51:41', NULL);
+(1, 22, '29.4400', 'Siparişiniz alındı', 'Ezgi Fıstıkçıoğlu', 'Nail bey mahallesi general Abdullah Alpdoğan cad. Bağkur sokak gizem apt. No:26/9 kat:3', '(055) 364-37-00', '5536437003', 'Garanti', 1, '2019-01-26 15:56:55', '2019-01-26 15:56:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -392,36 +436,36 @@ CREATE TABLE `urun` (
 --
 
 INSERT INTO `urun` (`id`, `slug`, `urun_adi`, `aciklama`, `fiyati`, `stok`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'neque-sed', 'Neque sed.', 'Debitis nostrum rerum aperiam et architecto cupiditate quia voluptas rerum et vero sunt repellendus est magni iure sed.', '9.350', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(2, 'repellat-nostrum-ipsam', 'Repellat nostrum ipsam.', 'Quia qui ex dolores odio adipisci voluptatibus corporis id aut consectetur natus itaque necessitatibus assumenda eveniet molestias eum laborum.', '10.740', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(3, 'voluptas-quia-et', 'Voluptas quia et.', 'Accusamus rerum consequuntur dolores eos accusantium quia qui tempora ex et et vero aperiam impedit repudiandae deleniti aut.', '2.130', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(4, 'mollitia-placeat', 'Mollitia placeat.', 'Quis sed est delectus sit fugit voluptatem eos quibusdam perferendis occaecati rerum quam et provident dignissimos omnis iste dolores recusandae provident omnis veritatis dolor.', '5.130', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(5, 'laborum-nisi-quos', 'Laborum nisi quos.', 'Saepe aut eos non et dolorem qui est debitis ut iusto minima et minus qui molestias fuga omnis rem molestias qui minima voluptates.', '2.420', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(6, 'est-expedita', 'Est expedita.', 'Nostrum numquam aut quo qui vel sed velit quaerat fuga inventore asperiores iure aut placeat.', '18.780', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(7, 'mollitia-possimus-debitis', 'Mollitia possimus debitis.', 'Soluta ipsa provident quia dicta quis delectus et ab sequi nulla aut nobis sapiente.', '4.960', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(8, 'molestiae-voluptas', 'Molestiae voluptas.', 'Excepturi fuga inventore consequuntur tempore totam minima optio facere consectetur et voluptas qui est unde labore.', '8.060', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(9, 'dolores-asperiores', 'Dolores asperiores.', 'Modi illum aut facere aliquid repellendus adipisci autem alias vero harum est adipisci magnam delectus dicta non dolor qui et fugit.', '17.030', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(10, 'animi-inventore-minima', 'Animi inventore minima.', 'Ea sed nisi ipsa explicabo consequatur rerum laudantium et dicta sed voluptates aut unde maxime distinctio et molestias excepturi adipisci iure reiciendis quia incidunt asperiores nulla omnis.', '7.110', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(11, 'nemo-aliquid', 'Nemo aliquid.', 'Et at at non assumenda voluptatibus ea eius velit laborum officia minima illum debitis unde.', '11.420', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(12, 'eum-dicta', 'Eum dicta.', 'Enim tempora perferendis quos eligendi atque labore architecto sit facilis deleniti vel asperiores sed.', '6.620', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(13, 'quibusdam-voluptatum', 'Quibusdam voluptatum.', 'Eius qui et laudantium quaerat iure sit sit non odit aliquid qui nihil asperiores nulla voluptatibus minus saepe iure voluptatibus quia perferendis quo minus.', '4.980', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(14, 'dolores-aperiam', 'Dolores aperiam.', 'Odit id magni officia fuga provident non qui eum sed ullam aut vero ratione eligendi omnis.', '19.260', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(15, 'rerum-atque-accusantium', 'Rerum atque accusantium.', 'Amet et molestias iusto alias odio quis aliquam modi repudiandae eos esse hic rerum.', '12.480', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(16, 'nesciunt-consequatur-rem', 'Nesciunt consequatur rem.', 'Et asperiores et et aliquam enim culpa reprehenderit et consequuntur eos officiis tenetur fuga veniam tempora eaque reiciendis corporis est consequatur aliquam ut tempora excepturi eligendi totam.', '3.090', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(17, 'minus-non-ullam', 'Minus non ullam.', 'Quam minus reprehenderit dolorem et beatae ipsam totam excepturi facilis voluptates doloribus magni earum facere et unde iusto illum dolores.', '11.840', 25, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
-(18, 'dolor-et-quia', 'Dolor et quia.', 'Animi magnam non voluptatem nemo tenetur nisi quia eligendi sunt blanditiis quis molestias aut dolore ab nesciunt quia a qui iste molestiae quaerat inventore est sed sunt.', '17.410', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
-(19, 'quisquam-unde', 'Quisquam unde.', 'Eum numquam laudantium dolores nihil quaerat laudantium molestiae vel veritatis occaecati facere dicta omnis voluptatem fuga sequi.', '11.610', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
-(20, 'animi-autem', 'Animi autem.', 'Quibusdam maiores fugit rerum a quo non repellat qui voluptas maxime officia vel perspiciatis fugiat.', '18.580', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
-(21, 'vel-quae-quibusdam', 'Vel quae quibusdam.', 'Enim est et quaerat nesciunt vero quae ut nostrum nihil voluptatem qui dolore quaerat quia cum sunt quaerat ut eius sunt sunt.', '11.590', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
-(22, 'et-qui-et', 'Et qui et.', 'Odit velit voluptate autem molestias sint sed alias deleniti iure eos culpa in ipsam itaque ut cum ullam vero sequi sit voluptatem fugiat ullam maiores velit quia.', '15.850', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
-(23, 'est-quisquam-assumenda', 'Est quisquam assumenda.', 'Nisi accusantium nam commodi laboriosam magnam voluptatem similique magnam dolorem officia nobis explicabo harum sunt aut esse occaecati qui ut blanditiis officia quos tenetur perferendis non a provident.', '16.440', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
-(24, 'vero-labore', 'Vero labore.', 'Qui nam repellat amet fugiat tenetur ad provident deserunt cum dolor earum omnis aut iste laudantium in qui sit voluptates nisi ipsa et a aut.', '16.220', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
-(25, 'excepturi-nemo', 'Excepturi nemo.', 'Ut perspiciatis voluptatibus ea sed eaque consequatur nostrum eius omnis a animi ad.', '19.610', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
-(26, 'commodi-laudantium', 'Commodi laudantium.', 'Voluptas sint vel maxime nesciunt ex sunt quo ea incidunt repellat itaque quia dolores inventore ducimus odit soluta quam aliquid aut ut quia et.', '11.620', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
-(27, 'fuga-quia-eligendi', 'Fuga quia eligendi.', 'Placeat accusamus quae eaque aperiam minima omnis ut qui reiciendis tenetur suscipit earum nulla cum et commodi dolor consequatur vero et dolor sit.', '17.480', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
-(28, 'est-repellendus', 'Est repellendus.', 'Ipsam aspernatur maxime quo aut dignissimos quos vel est quibusdam eos et sed nihil corporis et ut ab similique et qui alias est tempora nostrum voluptatem magnam.', '2.240', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
-(29, 'beatae-consequatur-vel', 'Beatae consequatur vel.', 'Animi minus sapiente nesciunt omnis mollitia ullam sit qui expedita ducimus veniam quia aperiam natus voluptatem laborum.', '4.540', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
-(30, 'sed-voluptate', 'Sed voluptate.', 'Eaque dolore modi facere omnis facere voluptatem velit corrupti officia eum voluptatem in deleniti saepe maiores tenetur sit ad.', '16.250', 25, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL);
+(1, 'neque-sed', 'Neque sed.', 'Debitis nostrum rerum aperiam et architecto cupiditate quia voluptas rerum et vero sunt repellendus est magni iure sed.', '9.350', 9998, '2018-12-14 04:47:23', '2019-01-26 15:56:55', NULL),
+(2, 'repellat-nostrum-ipsam', 'Repellat nostrum ipsam.', 'Quia qui ex dolores odio adipisci voluptatibus corporis id aut consectetur natus itaque necessitatibus assumenda eveniet molestias eum laborum.', '10.740', 9999, '2018-12-14 04:47:23', '2019-01-26 15:56:55', NULL),
+(3, 'voluptas-quia-et', 'Voluptas quia et.', 'Accusamus rerum consequuntur dolores eos accusantium quia qui tempora ex et et vero aperiam impedit repudiandae deleniti aut.', '2.130', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(4, 'mollitia-placeat', 'Mollitia placeat.', 'Quis sed est delectus sit fugit voluptatem eos quibusdam perferendis occaecati rerum quam et provident dignissimos omnis iste dolores recusandae provident omnis veritatis dolor.', '5.130', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(5, 'laborum-nisi-quos', 'Laborum nisi quos.', 'Saepe aut eos non et dolorem qui est debitis ut iusto minima et minus qui molestias fuga omnis rem molestias qui minima voluptates.', '2.420', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(6, 'est-expedita', 'Est expedita.', 'Nostrum numquam aut quo qui vel sed velit quaerat fuga inventore asperiores iure aut placeat.', '18.780', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(7, 'mollitia-possimus-debitis', 'Mollitia possimus debitis.', 'Soluta ipsa provident quia dicta quis delectus et ab sequi nulla aut nobis sapiente.', '4.960', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(8, 'molestiae-voluptas', 'Molestiae voluptas.', 'Excepturi fuga inventore consequuntur tempore totam minima optio facere consectetur et voluptas qui est unde labore.', '8.060', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(9, 'dolores-asperiores', 'Dolores asperiores.', 'Modi illum aut facere aliquid repellendus adipisci autem alias vero harum est adipisci magnam delectus dicta non dolor qui et fugit.', '17.030', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(10, 'animi-inventore-minima', 'Animi inventore minima.', 'Ea sed nisi ipsa explicabo consequatur rerum laudantium et dicta sed voluptates aut unde maxime distinctio et molestias excepturi adipisci iure reiciendis quia incidunt asperiores nulla omnis.', '7.110', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(11, 'nemo-aliquid', 'Nemo aliquid.', 'Et at at non assumenda voluptatibus ea eius velit laborum officia minima illum debitis unde.', '11.420', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(12, 'eum-dicta', 'Eum dicta.', 'Enim tempora perferendis quos eligendi atque labore architecto sit facilis deleniti vel asperiores sed.', '6.620', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(13, 'quibusdam-voluptatum', 'Quibusdam voluptatum.', 'Eius qui et laudantium quaerat iure sit sit non odit aliquid qui nihil asperiores nulla voluptatibus minus saepe iure voluptatibus quia perferendis quo minus.', '4.980', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(14, 'dolores-aperiam', 'Dolores aperiam.', 'Odit id magni officia fuga provident non qui eum sed ullam aut vero ratione eligendi omnis.', '19.260', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(15, 'rerum-atque-accusantium', 'Rerum atque accusantium.', 'Amet et molestias iusto alias odio quis aliquam modi repudiandae eos esse hic rerum.', '12.480', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(16, 'nesciunt-consequatur-rem', 'Nesciunt consequatur rem.', 'Et asperiores et et aliquam enim culpa reprehenderit et consequuntur eos officiis tenetur fuga veniam tempora eaque reiciendis corporis est consequatur aliquam ut tempora excepturi eligendi totam.', '3.090', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(17, 'minus-non-ullam', 'Minus non ullam.', 'Quam minus reprehenderit dolorem et beatae ipsam totam excepturi facilis voluptates doloribus magni earum facere et unde iusto illum dolores.', '11.840', 10000, '2018-12-14 04:47:23', '2018-12-14 04:47:23', NULL),
+(18, 'dolor-et-quia', 'Dolor et quia.', 'Animi magnam non voluptatem nemo tenetur nisi quia eligendi sunt blanditiis quis molestias aut dolore ab nesciunt quia a qui iste molestiae quaerat inventore est sed sunt.', '17.410', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
+(19, 'quisquam-unde', 'Quisquam unde.', 'Eum numquam laudantium dolores nihil quaerat laudantium molestiae vel veritatis occaecati facere dicta omnis voluptatem fuga sequi.', '11.610', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
+(20, 'animi-autem', 'Animi autem.', 'Quibusdam maiores fugit rerum a quo non repellat qui voluptas maxime officia vel perspiciatis fugiat.', '18.580', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
+(21, 'vel-quae-quibusdam', 'Vel quae quibusdam.', 'Enim est et quaerat nesciunt vero quae ut nostrum nihil voluptatem qui dolore quaerat quia cum sunt quaerat ut eius sunt sunt.', '11.590', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
+(22, 'et-qui-et', 'Et qui et.', 'Odit velit voluptate autem molestias sint sed alias deleniti iure eos culpa in ipsam itaque ut cum ullam vero sequi sit voluptatem fugiat ullam maiores velit quia.', '15.850', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
+(23, 'est-quisquam-assumenda', 'Est quisquam assumenda.', 'Nisi accusantium nam commodi laboriosam magnam voluptatem similique magnam dolorem officia nobis explicabo harum sunt aut esse occaecati qui ut blanditiis officia quos tenetur perferendis non a provident.', '16.440', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
+(24, 'vero-labore', 'Vero labore.', 'Qui nam repellat amet fugiat tenetur ad provident deserunt cum dolor earum omnis aut iste laudantium in qui sit voluptates nisi ipsa et a aut.', '16.220', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
+(25, 'excepturi-nemo', 'Excepturi nemo.', 'Ut perspiciatis voluptatibus ea sed eaque consequatur nostrum eius omnis a animi ad.', '19.610', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
+(26, 'commodi-laudantium', 'Commodi laudantium.', 'Voluptas sint vel maxime nesciunt ex sunt quo ea incidunt repellat itaque quia dolores inventore ducimus odit soluta quam aliquid aut ut quia et.', '11.620', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
+(27, 'fuga-quia-eligendi', 'Fuga quia eligendi.', 'Placeat accusamus quae eaque aperiam minima omnis ut qui reiciendis tenetur suscipit earum nulla cum et commodi dolor consequatur vero et dolor sit.', '17.480', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
+(28, 'est-repellendus', 'Est repellendus.', 'Ipsam aspernatur maxime quo aut dignissimos quos vel est quibusdam eos et sed nihil corporis et ut ab similique et qui alias est tempora nostrum voluptatem magnam.', '2.240', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
+(29, 'beatae-consequatur-vel', 'Beatae consequatur vel.', 'Animi minus sapiente nesciunt omnis mollitia ullam sit qui expedita ducimus veniam quia aperiam natus voluptatem laborum.', '4.540', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL),
+(30, 'sed-voluptate', 'Sed voluptate.', 'Eaque dolore modi facere omnis facere voluptatem velit corrupti officia eum voluptatem in deleniti saepe maiores tenetur sit ad.', '16.250', 10000, '2018-12-14 04:47:24', '2018-12-14 04:47:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -465,6 +509,12 @@ ALTER TABLE `bayilik`
 --
 ALTER TABLE `begen`
   ADD PRIMARY KEY (`begen_id`);
+
+--
+-- Tablo için indeksler `iletisim`
+--
+ALTER TABLE `iletisim`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Tablo için indeksler `kategori`
@@ -524,8 +574,7 @@ ALTER TABLE `sepet_urun`
 -- Tablo için indeksler `siparis`
 --
 ALTER TABLE `siparis`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `siparis_sepet_id_unique` (`sepet_id`);
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Tablo için indeksler `urun`
@@ -553,19 +602,25 @@ ALTER TABLE `bayilik`
 -- Tablo için AUTO_INCREMENT değeri `begen`
 --
 ALTER TABLE `begen`
-  MODIFY `begen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `begen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `iletisim`
+--
+ALTER TABLE `iletisim`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `kategori_urun`
 --
 ALTER TABLE `kategori_urun`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `kombin`
@@ -595,19 +650,19 @@ ALTER TABLE `migrations`
 -- Tablo için AUTO_INCREMENT değeri `sepet`
 --
 ALTER TABLE `sepet`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `sepet_urun`
 --
 ALTER TABLE `sepet_urun`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `siparis`
 --
 ALTER TABLE `siparis`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `urun`
@@ -643,12 +698,6 @@ ALTER TABLE `sepet`
 ALTER TABLE `sepet_urun`
   ADD CONSTRAINT `sepet_urun_sepet_id_foreign` FOREIGN KEY (`sepet_id`) REFERENCES `sepet` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `sepet_urun_urun_id_foreign` FOREIGN KEY (`urun_id`) REFERENCES `urun` (`id`) ON DELETE CASCADE;
-
---
--- Tablo kısıtlamaları `siparis`
---
-ALTER TABLE `siparis`
-  ADD CONSTRAINT `siparis_sepet_id_foreign` FOREIGN KEY (`sepet_id`) REFERENCES `sepet` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
