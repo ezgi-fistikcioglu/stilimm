@@ -85,7 +85,8 @@ Route::group(['prefix' => 'kullanici'], function () {
     Route::get('/kaydol', 'KullaniciController@kaydol_form')->name('kullanici.kaydol');
     Route::post('/kaydol', 'KullaniciController@kaydolk');
     Route::post('/oturumukapat', 'KullaniciController@oturumukapat')->name('kullanici.oturumukapat');
-    Route::get('/adres', 'KullaniciController@index')->name('kullanici.adres');
+    Route::get('/adres', 'KullaniciController@adres')->name('kullanici.adres');
+    Route::post('/adres', 'KullaniciController@adres_post')->name('kullanici.adres');
     Route::get('/iptal', 'KullaniciController@iptal_form')->name('kullanici.uyelikiptal');
     Route::get('/kuyelik', 'KullaniciController@uyelik_form')->name('kullanici.uyelikBilgileri');
     Route::get('/kombin', 'KullaniciController@kombin_form')->name('kullanici.kombin');

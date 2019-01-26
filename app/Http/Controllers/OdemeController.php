@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Adres;
+use App\Models\Sepet;
 use App\Models\Siparis;
+use App\Models\Urun;
 use Validator;
 use Illuminate\Http\Request;
 use Cart;
@@ -29,8 +32,9 @@ class OdemeController extends Controller
         }
 
         $kullanici_detay = auth()->user()->detay;
+        $adresler = Adres::get();
 //        detay fonksiyonunu daha öce Kullanici model de tanımlamıştık
-        return view('odeme',compact('kullanici_detay'));
+        return view('odeme',compact('kullanici_detay', 'adresler'));
     }
     public function odemeyap()
     {
@@ -63,9 +67,31 @@ class OdemeController extends Controller
         session()->forget('aktif_sepet_id');
         //session içerisinde yer alan aktif_sepet_id'sini de siliyoruz
 
+        $this->stok_dusur($siparis['sepet_id']);
+
         return redirect()->route('siparisler')
             ->with('mesaj_tur','success')
             ->with('mesaj','Ödemeniz Başarılı Bir Şekilde Gerçekleştirildi.');
+
+    }
+
+    private function stok_dusur($sepet_id)
+    {
+        //Sepetteki ürünleri çek
+        //For: sepet ürünleri
+            //Ürünün stok sayısı (Model)
+            //Ürün stok - Alınan adet
+            //Stok bilgisini güncelle
+
+        $urunler= sepet_urun::where('sepet_id',$sepet_id)->get();
+        foreach ( $urunler as $urun)
+        {
+            $stok = Urun::where('id',$urun->urun_id)->pluck('stok')->first();
+            $yeniStok = (int) $stok - (int) ($urun->adet);
+            Urun::where('id', $urun->urun_id)->update([
+               'stok' => $yeniStok
+            ]);
+        }
 
     }
 }

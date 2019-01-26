@@ -21,6 +21,7 @@
                                         <i class="fa fa-arrow-circle-right"></i>
                                         {{$alt_kategori->kategori_adi}}
                                     </a>
+
                                 @endforeach
                             </div>
                         @else

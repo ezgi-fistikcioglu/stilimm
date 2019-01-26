@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Adres;
 use App\Models\Kullanici;
 use App\Models\Kombin;
 use App\Mail\KullaniciKayitMail;
@@ -178,9 +179,32 @@ class KullaniciController extends Controller
 
     }
 
-    public function index()
+    public function adres()
     {
-        return view('kullanici.adres');
+        $adres = Adres::paginate(8);
+        return view('kullanici.adres')->with([
+            'adres'=> $adres
+        ]);
+    }
+    public function adres_post()
+    {
+        $this->validate(request(),[
+            'adres_basligi' => 'required',
+            'adsoyad' => 'required',
+            'sehir' => 'required',
+            'ilce' => 'required',
+            'mahalle' => 'required',
+            'adres' => 'required',
+            'posta_kodu' => 'required',
+            'cep_telefonu' => 'required',
+            'fatura_turu' => 'required',
+            'tc' => 'required',
+        ]);
+        $data = request()->only('adres_basligi','adsoyad', 'sehir', 'ilce','mahalle','adres','posta_kodu','cep_telefonu','fatura_turu','tc');
+        Adres::insert($data);
+        return redirect()->to('/odeme')
+            ->with('mesaj', 'Adres eklenmiştir!')
+            ->with('mesaj_tur', 'success');
     }
 
     public function kombin_form()
