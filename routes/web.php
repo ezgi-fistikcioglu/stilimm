@@ -28,11 +28,16 @@ Route::group(['prefix' => 'yonetim', 'namespace' => 'Yonetim'], function () {
             Route::match(['get','post'],'/' ,'UrunController@index')->name('yonetim.urunler');
             Route::get('/yeni','UrunController@form')->name('yonetim.urunler.yeni');
             Route::get('/duzenle/{id}','UrunController@form')->name('yonetim.urunler.duzenle');
-            Route::get('/kaydet/{id?}','UrunController@kaydet')->name('yonetim.urunler.kaydet');
+            Route::post('/kaydet/{id?}','UrunController@kaydet')->name('yonetim.urunler.kaydet');
             Route::get('/sil/{id}','UrunController@sil')->name('yonetim.urunler.sil');
 
-
-
+        });
+        Route::group(['prefix'=> 'siparisler'],function (){
+            Route::match(['get','post'],'/','Sipariscontroller@index')->name('yonetim.siparisler');
+            Route::get('/yeni','Sipariscontroller@form')->name('yonetim.siparisler.yeni');
+            Route::get('/duzenle/{id}','Sipariscontroller@form')->name('yonetim.siparisler.duzenle');
+            Route::post('/kaydet/{id?}','Sipariscontroller@kaydet')->name('yonetim.siparisler.kaydet');
+            Route::get('/sil/{id}','Sipariscontroller@sil')->name('yonetim.siparisler.sil');
         });
     });
 });
