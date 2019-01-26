@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Iletisim;
 use App\Models\Kategori;
 use App\Models\Kombin;
 use App\Models\Kullanici;
@@ -46,5 +47,30 @@ class AnasayfaController extends Controller
             'kazanan_kombin' => $kazanan_kombin,
             'kazanan_kullanici' => $kazanan_kullanici,
         ]);
+
+    }
+    public function hakkimizda()
+    {
+        return view('hakkimizda');
+    }
+    public function iletisim()
+    {
+     return view('iletisim');
+    }
+    public function iletisim_kaydet()
+    {
+        $this->validate(request(),[
+            'adsoyad' => 'required',
+            'telefon' => 'required',
+            'email' => 'required',
+            'mesaj' => 'required'
+
+        ]);
+        $data = request()->only('adsoyad', 'telefon', 'email','mesaj');
+        Iletisim::insert($data);
+        return redirect()->to('iletisim')
+            ->with('mesaj', 'Mesajınız Alınmıştır')
+            ->with('mesaj_tur', 'success');
+
     }
 }

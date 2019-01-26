@@ -19,4 +19,8 @@
         <span class="fa fa-fw fa-dashboard"></span> Siparişler
         <span class="badge badge-dark badge-pill pull-right">14</span>
     </a>
+    <a href="{{route('yonetim.iletisim')}}" class="list-group-item">
+        <span class="fa fa-fw fa-dashboard"></span> İletişim
+        <span class="badge badge-dark badge-pill pull-right">14</span>
+    </a>
 </div>

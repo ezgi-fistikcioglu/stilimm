@@ -39,9 +39,20 @@ Route::group(['prefix' => 'yonetim', 'namespace' => 'Yonetim'], function () {
             Route::post('/kaydet/{id?}','Sipariscontroller@kaydet')->name('yonetim.siparisler.kaydet');
             Route::get('/sil/{id}','Sipariscontroller@sil')->name('yonetim.siparisler.sil');
         });
+        Route::group(['prefix' => 'iletisim'], function () {
+            Route::match(['get','post'],'/', 'IletisimController@index')->name('yonetim.iletisim');
+            Route::get('/sil/{id}', 'IletisimController@sil')->name('yonetim.iletisim.sil');
+
+        });
     });
 });
 Route::get('/', 'AnasayfaController@index')->name('anasayfa');
+Route::get('/hakkimizda', 'AnasayfaController@hakkimizda')->name('hakkimizda');
+Route::get('/iletisim', 'AnasayfaController@iletisim')->name('iletisim');
+Route::post('/iletisim', 'AnasayfaController@iletisim_kaydet')->name('iletisim');
+
+
+
 
 Route::get('/kategori/{slug_kategoriadi}', 'KategoriController@index')->name('kategori');
 

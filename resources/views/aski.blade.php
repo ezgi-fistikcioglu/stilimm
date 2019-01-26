@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('title','Askı Projesi')
 @section('content')
-    <div class="header-banner-cover" xmlns="http://www.w3.org/1999/html">
-        <div class="col-md-10 col-md-offset-1">
+    <div class="container-fluid">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Bu Ayki Askı Projemiz</div>
                 <div class="panel-body">

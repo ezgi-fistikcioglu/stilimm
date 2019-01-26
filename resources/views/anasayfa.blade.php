@@ -123,6 +123,7 @@
                                 </div>
                         </div>
                         @endif
+                            <a href="{{route('hakkimizda')}}">Hakkımızda</a> | <a href="{{route('iletisim')}}">İletişim</a>
                     </div>
                 </div>
 
